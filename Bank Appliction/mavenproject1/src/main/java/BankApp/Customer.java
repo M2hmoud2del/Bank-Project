@@ -3,7 +3,7 @@ import java.util.Objects;
 import java.io.Serializable;
 public class Customer implements Serializable {
     int id,cvv;
-    String firstName,secondName,expiredDate;
+    String firstName,secondName,startedDate,expiredDate;
 
     public Customer(int id, int cvv, String firstName, String secondName, String expiredDate) {
         this.id = id;
