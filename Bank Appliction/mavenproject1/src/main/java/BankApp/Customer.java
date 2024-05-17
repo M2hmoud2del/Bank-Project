@@ -1,4 +1,4 @@
-package file;
+package BankApp;
 import java.util.Objects;
 import java.io.Serializable;
 public class Customer implements Serializable {
