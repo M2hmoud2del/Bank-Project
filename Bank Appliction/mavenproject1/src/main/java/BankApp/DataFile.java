@@ -12,25 +12,18 @@ import java.util.List;
 
 public class DataFile implements Serializable {
 
-    public static void AddCustomer(Customer c) throws IOException {
-        FileOutputStream f = new FileOutputStream("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt",true);
-        ObjectOutputStream obj = new ObjectOutputStream(f);
-        obj.writeObject(c);
-        obj.close();
+    public static void AddCustomer(Customer c) throws IOException, ClassNotFoundException {
+        List<Customer>customers=readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+        customers.add(c);
+        writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt",customers);
     }
     public static boolean RemoveCustomer(String filePath,String id) throws IOException, ClassNotFoundException {
-        if (FoundCustomer(filePath,id)) {
-            List<Customer> l=readCustomersFromFile(filePath);
-             for(Customer i:l){
-                 if(i.getId().equals(id)){
-                     l.remove(i);
-                     break;
-                 }
-             }
-             writeCustomersToFile(filePath,l);
-            return true;
+        List<Customer> customers = readCustomersFromFile(filePath);
+        boolean removed = customers.removeIf(customer -> customer.getId().equals(id));
+        if (removed) {
+            writeCustomersToFile(filePath, customers);
         }
-        return false;
+        return removed;
     }
 
     public static List<Customer> readCustomersFromFile(String filePath) throws IOException, ClassNotFoundException {
