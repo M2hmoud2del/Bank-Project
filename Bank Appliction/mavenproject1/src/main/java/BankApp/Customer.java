@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Random;
 public class Customer implements Serializable {
     int cvv;
-    String firstName,secondName,startedDate,expiredDate,cardNumber;
+    String firstName,secondName,startedDate,expiredDate,cardNumber,password="123456789",money="0$";
 
     public Customer(String cardNumber, int cvv, String firstName, String secondName, String expiredDate) {
         this.cardNumber = cardNumber;
@@ -34,6 +34,14 @@ public class Customer implements Serializable {
         return cardNumber;
     }
 
+    public String getMoney() {
+        return money.substring(0,money.length()-1);
+    }
+
+    public void setMoney(String money) {
+        this.money = money+"$";
+    }
+
     public int getCvv() {
         return cvv;
     }
@@ -48,6 +56,22 @@ public class Customer implements Serializable {
 
     public String getExpiredDate() {
         return expiredDate;
+    }
+
+    public String getStartedDate() {
+        return startedDate;
+    }
+
+    public void setStartedDate(String startedDate) {
+        this.startedDate = startedDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setId(String id) {
