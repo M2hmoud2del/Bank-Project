@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Bank_Login extends javax.swing.JFrame {
     
-    File f = new File("Users/User.txt");
+    File f = new File("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
     FileInputStream fi;
     ArrayList<User> users = new ArrayList<>();
     ObjectInputStream ois;
@@ -188,7 +188,16 @@ public class Bank_Login extends javax.swing.JFrame {
                 break;
         }
         }
-            if(flag == 0){
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{ if(flag == 0){
             JOptionPane.showMessageDialog(null, "You have entered wrong password or username.");
             }else{
                 if(!admin){
@@ -200,16 +209,7 @@ public class Bank_Login extends javax.swing.JFrame {
                 ad.setVisible(true);
                 this.setVisible(false);
                 }
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         catch (ClassNotFoundException ex) {
-            Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            }}
     }//GEN-LAST:event_B1ActionPerformed
 
     /**
