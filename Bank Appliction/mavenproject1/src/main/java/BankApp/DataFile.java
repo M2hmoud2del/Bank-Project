@@ -13,7 +13,7 @@ import java.util.List;
 public class DataFile implements Serializable {
 
     public static void AddCustomer(Customer c) throws IOException {
-        FileOutputStream f = new FileOutputStream("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+        FileOutputStream f = new FileOutputStream("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt",true);
         ObjectOutputStream obj = new ObjectOutputStream(f);
         obj.writeObject(c);
         obj.close();
