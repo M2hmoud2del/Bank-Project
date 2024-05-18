@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -606,6 +608,8 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                 DataFile.AddCustomer(c);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Couldn't Find File", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AdmininsratorFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             FName.setText("");
             LName.setText("");
