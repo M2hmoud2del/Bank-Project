@@ -4,6 +4,9 @@
  */
 package BankApp;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author capok
@@ -15,6 +18,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
      */
     public AdmininsratorFrame() {
         initComponents();
+        isAdded.setVisible(false);
     }
 
     /**
@@ -38,10 +42,13 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         tap2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        FName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        LName = new javax.swing.JTextField();
+        add = new javax.swing.JButton();
+        SDate = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        isAdded = new javax.swing.JLabel();
         tap3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -161,7 +168,11 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                 "Name", "Started Data", "Ended Date", "Card Number", "CVV"
             }
         ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
+        jTable1.setEnabled(false);
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -199,12 +210,12 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("First Name");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        FName.setBackground(new java.awt.Color(255, 255, 255));
+        FName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        FName.setForeground(new java.awt.Color(0, 0, 0));
+        FName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                FNameActionPerformed(evt);
             }
         });
 
@@ -213,43 +224,73 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Last Name");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        LName.setBackground(new java.awt.Color(255, 255, 255));
+        LName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LName.setForeground(new java.awt.Color(0, 0, 0));
+        LName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                LNameActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(18, 139, 165));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add.setBackground(new java.awt.Color(18, 139, 165));
+        add.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        add.setForeground(new java.awt.Color(255, 255, 255));
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
+
+        SDate.setBackground(new java.awt.Color(255, 255, 255));
+        SDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SDate.setForeground(new java.awt.Color(0, 0, 0));
+        SDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SDateActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Started Date");
+
+        isAdded.setBackground(new java.awt.Color(0, 0, 0));
+        isAdded.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        isAdded.setForeground(new java.awt.Color(0, 204, 51));
+        isAdded.setText("Customer Succsufully added ");
 
         javax.swing.GroupLayout tap2Layout = new javax.swing.GroupLayout(tap2);
         tap2.setLayout(tap2Layout);
         tap2Layout.setHorizontalGroup(
             tap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tap2Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(33, 33, 33)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tap2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
+            .addGroup(tap2Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(tap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tap2Layout.createSequentialGroup()
+                        .addComponent(FName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(33, 33, 33)
+                        .addComponent(LName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))
+                    .addGroup(tap2Layout.createSequentialGroup()
+                        .addComponent(SDate, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(tap2Layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(isAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tap2Layout.setVerticalGroup(
             tap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,11 +298,17 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                 .addGap(114, 114, 114)
                 .addGroup(tap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 372, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112)
+                .addGroup(tap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addComponent(isAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
         );
 
@@ -318,31 +365,60 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
 
     private void customersDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersDetailsActionPerformed
         taps.setSelectedIndex(0);
+        FName.setText("");
+        LName.setText("");
+        SDate.setText("");
+        isAdded.setVisible(false);
     }//GEN-LAST:event_customersDetailsActionPerformed
 
     private void addCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerActionPerformed
         taps.setSelectedIndex(1);
+        FName.setText("");
+        LName.setText("");
+        SDate.setText("");
+        isAdded.setVisible(false);
     }//GEN-LAST:event_addCustomerActionPerformed
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         taps.setSelectedIndex(2);
+        FName.setText("");
+        LName.setText("");
+        SDate.setText("");
+        isAdded.setVisible(false);
     }//GEN-LAST:event_removeActionPerformed
 
     private void remove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_remove1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void FNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_FNameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void LNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_LNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        if (FName.getText().trim() != "" && LName.getText().trim() != "" && SDate.getText().trim() != "") {
+            Customer c = new Customer(FName.getText(), LName.getText(), SDate.getText());
+            try {
+                DataFile.AddCustomer(c);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Couldn't Find File", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            FName.setText("");
+            LName.setText("");
+            SDate.setText("");
+            isAdded.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Fill the Informations of The Customer", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_addActionPerformed
+
+    private void SDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,19 +456,22 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField FName;
+    private javax.swing.JTextField LName;
+    private javax.swing.JTextField SDate;
+    private javax.swing.JButton add;
     private javax.swing.JButton addCustomer;
     private javax.swing.JButton customersDetails;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel isAdded;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton remove;
     private javax.swing.JButton remove1;
