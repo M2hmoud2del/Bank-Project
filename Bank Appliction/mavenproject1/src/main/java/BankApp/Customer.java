@@ -1,20 +1,37 @@
 package BankApp;
 import java.util.Objects;
 import java.io.Serializable;
+import java.util.Random;
 public class Customer implements Serializable {
-    int id,cvv;
-    String firstName,secondName,startedDate,expiredDate;
+    int cvv;
+    String firstName,secondName,startedDate,expiredDate,cardNumber;
 
-    public Customer(int id, int cvv, String firstName, String secondName, String expiredDate) {
-        this.id = id;
+    public Customer(String cardNumber, int cvv, String firstName, String secondName, String expiredDate) {
+        this.cardNumber = cardNumber;
         this.cvv = cvv;
         this.firstName = firstName;
         this.secondName = secondName;
         this.expiredDate = expiredDate;
     }
-
-    public int getId() {
-        return id;
+    public Customer(String firstName, String secondName,String start) {
+        Random r=new Random();
+        this.cvv=r.nextInt()%10+r.nextInt()%10*10+r.nextInt()%10*100;
+        this.cardNumber="5607 8402 ";
+        int min = 10000000;
+        int max = 99999999;
+        int randomEightDigitNumber = r.nextInt((max - min) + 1) + min;
+        this.cardNumber+=Integer.toString(randomEightDigitNumber).substring(0,4)+ " ";
+        this.cardNumber+=Integer.toString(randomEightDigitNumber).substring(4);
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.startedDate=start;
+        String month=start.substring(0,2);
+        String Year=start.substring(3);
+        int y=Integer.parseInt(Year)+5;
+        this.expiredDate=month+"/"+Integer.toString(y);
+    }
+    public String getId() {
+        return cardNumber;
     }
 
     public int getCvv() {
@@ -33,8 +50,8 @@ public class Customer implements Serializable {
         return expiredDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String id) {
+        this.cardNumber = id;
     }
 
     public void setCvv(int cvv) {
@@ -71,9 +88,6 @@ public class Customer implements Serializable {
             return false;
         }
         final Customer other = (Customer) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         if (this.cvv != other.cvv) {
             return false;
         }
@@ -83,12 +97,20 @@ public class Customer implements Serializable {
         if (!Objects.equals(this.secondName, other.secondName)) {
             return false;
         }
-        return Objects.equals(this.expiredDate, other.expiredDate);
+        if (!Objects.equals(this.startedDate, other.startedDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.expiredDate, other.expiredDate)) {
+            return false;
+        }
+        return Objects.equals(this.cardNumber, other.cardNumber);
     }
+
+
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", cvv=" + cvv + ", firstName=" + firstName + ", secondName=" + secondName + ", expiredDate=" + expiredDate + '}';
+        return "Customer{" + "id=" + cardNumber + ", cvv=" + cvv + ", firstName=" + firstName + ", secondName=" + secondName + ", expiredDate=" + expiredDate + '}';
     }
     
 }
