@@ -9,11 +9,16 @@ package BankApp;
  * @author ezzat
  */
 public class Bank_app extends javax.swing.JFrame {
-
+    String id;
     /**
      * Creates new form Bank_app
      */
+    public Bank_app(String id) {
+        this.id = id;
+        initComponents();
+    }
     public Bank_app() {
+        this.id = null;
         initComponents();
     }
 
