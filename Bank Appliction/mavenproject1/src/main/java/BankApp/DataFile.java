@@ -18,11 +18,11 @@ public class DataFile implements Serializable {
         obj.writeObject(c);
         obj.close();
     }
-    public static boolean RemoveCustomer(String filePath,int id) throws IOException, ClassNotFoundException {
+    public static boolean RemoveCustomer(String filePath,String id) throws IOException, ClassNotFoundException {
         if (FoundCustomer(filePath,id)) {
             List<Customer> l=readCustomersFromFile(filePath);
              for(Customer i:l){
-                 if(i.getId()==id){
+                 if(i.getId().equals(id)){
                      l.remove(i);
                      break;
                  }
@@ -58,10 +58,10 @@ public class DataFile implements Serializable {
         }
         
     }
-        public static boolean FoundCustomer(String filePath,int id) throws IOException, ClassNotFoundException {
+        public static boolean FoundCustomer(String filePath,String id) throws IOException, ClassNotFoundException {
             List<Customer> c= DataFile.readCustomersFromFile(filePath);
             for(Customer i:c){
-                if(i.getId()==id)return true;
+                if(i.getId().equals(id))return true;
             }
             return false;
     }
