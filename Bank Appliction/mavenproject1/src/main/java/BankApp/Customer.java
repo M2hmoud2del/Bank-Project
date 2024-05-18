@@ -15,7 +15,7 @@ public class Customer implements Serializable {
     }
     public Customer(String firstName, String secondName,String start) {
         Random r=new Random();
-        this.cvv=r.nextInt()%10+r.nextInt()%10*10+r.nextInt()%10*100;
+        this.cvv=r.nextInt(10)%10+r.nextInt(10)%10*10+r.nextInt(10)%10*100;
         this.cardNumber="5607 8402 ";
         int min = 10000000;
         int max = 99999999;
