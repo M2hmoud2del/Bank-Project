@@ -4,8 +4,13 @@
  */
 package BankApp;
 
+import static BankApp.DataFile.readCustomersFromFile;
+import java.awt.Color;
 import java.io.IOException;
+import java.util.List;
+import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +23,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
      */
     public AdmininsratorFrame() {
         initComponents();
+        customersDetails.setBackground(new Color(13, 117, 16));
         isAdded.setVisible(false);
     }
 
@@ -37,9 +43,29 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         remove1 = new javax.swing.JButton();
         taps = new javax.swing.JTabbedPane();
         tap1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        FullName = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        show = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        Clear = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        first = new javax.swing.JTextField();
+        start = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        ended = new javax.swing.JTextField();
+        Pass = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        card = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        cvv = new javax.swing.JTextField();
+        money = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        Delete = new javax.swing.JButton();
+        Last = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         tap2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         FName = new javax.swing.JTextField();
@@ -107,98 +133,236 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
 
         taps.setBackground(new java.awt.Color(255, 255, 255));
         taps.setPreferredSize(new java.awt.Dimension(1024, 700));
+        taps.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tapsStateChanged(evt);
+            }
+        });
 
         tap1.setBackground(new java.awt.Color(204, 204, 204));
 
+        FullName.setBackground(new java.awt.Color(204, 204, 204));
+        FullName.setForeground(new java.awt.Color(204, 204, 204));
+
+        jTable1.setDefaultEditor(Object.class, null);
         jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Name", "Started Data", "Ended Date", "Card Number", "CVV"
+                "Name", "Password", "Started Data", "Ended Date", "Card Number", "CVV", "Money"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.setCellSelectionEnabled(true);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
-        jTable1.setEnabled(false);
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
-                .addContainerGap())
+        show.setText("SHOW DATA");
+        show.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showActionPerformed(evt);
+            }
+        });
+
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
+        Clear.setText("Clear");
+        Clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("First Name");
+
+        first.setBackground(new java.awt.Color(255, 255, 255));
+        first.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        start.setBackground(new java.awt.Color(255, 255, 255));
+        start.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Started Data");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Ended Date");
+
+        ended.setBackground(new java.awt.Color(255, 255, 255));
+        ended.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        Pass.setBackground(new java.awt.Color(255, 255, 255));
+        Pass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Password");
+
+        card.setBackground(new java.awt.Color(255, 255, 255));
+        card.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Card Number");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("CVV");
+
+        cvv.setBackground(new java.awt.Color(255, 255, 255));
+        cvv.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        money.setBackground(new java.awt.Color(255, 255, 255));
+        money.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Money");
+
+        Delete.setText("Delete");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
+
+        Last.setBackground(new java.awt.Color(255, 255, 255));
+        Last.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Last.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Last Name");
+
+        javax.swing.GroupLayout FullNameLayout = new javax.swing.GroupLayout(FullName);
+        FullName.setLayout(FullNameLayout);
+        FullNameLayout.setHorizontalGroup(
+            FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FullNameLayout.createSequentialGroup()
+                .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FullNameLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(show, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FullNameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(first, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cvv, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FullNameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FullNameLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(FullNameLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(27, 27, 27)
+                                .addComponent(Last, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)
+                                .addGap(48, 48, 48)
+                                .addComponent(Pass, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(FullNameLayout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ended, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(card, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(104, 104, 104))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FullNameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112)))
+                .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+            .addComponent(jScrollPane1)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE))
+        FullNameLayout.setVerticalGroup(
+            FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FullNameLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(first, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Last, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(77, 77, 77)
+                .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(card, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(63, 63, 63)
+                .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(cvv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(show, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout tap1Layout = new javax.swing.GroupLayout(tap1);
         tap1.setLayout(tap1Layout);
         tap1Layout.setHorizontalGroup(
             tap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(FullName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tap1Layout.setVerticalGroup(
             tap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(FullName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         taps.addTab("tab1", tap1);
@@ -369,6 +533,18 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         LName.setText("");
         SDate.setText("");
         isAdded.setVisible(false);
+        customersDetails.setBackground(new Color(13, 117, 16));
+        addCustomer.setBackground(new Color(0, 102, 102));
+        remove.setBackground(new Color(0, 102, 102));
+        first.setText("");
+        Last.setText("");
+        Pass.setText("");
+        start.setText("");
+        ended.setText("");
+        card.setText("");
+        cvv.setText("");
+        money.setText("");
+        ClearActionPerformed(evt);
     }//GEN-LAST:event_customersDetailsActionPerformed
 
     private void addCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerActionPerformed
@@ -377,6 +553,18 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         LName.setText("");
         SDate.setText("");
         isAdded.setVisible(false);
+        addCustomer.setBackground(new Color(13, 117, 16));
+        customersDetails.setBackground(new Color(0, 102, 102));
+        remove.setBackground(new Color(0, 102, 102));
+        first.setText("");
+        Last.setText("");
+        Pass.setText("");
+        start.setText("");
+        ended.setText("");
+        card.setText("");
+        cvv.setText("");
+        money.setText("");
+        ClearActionPerformed(evt);
     }//GEN-LAST:event_addCustomerActionPerformed
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
@@ -385,6 +573,18 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         LName.setText("");
         SDate.setText("");
         isAdded.setVisible(false);
+        customersDetails.setBackground(new Color(0, 102, 102));
+        addCustomer.setBackground(new Color(0, 102, 102));
+        remove.setBackground(new Color(13, 117, 16));
+        first.setText("");
+        Last.setText("");
+        Pass.setText("");
+        start.setText("");
+        ended.setText("");
+        card.setText("");
+        cvv.setText("");
+        money.setText("");
+        ClearActionPerformed(evt);
     }//GEN-LAST:event_removeActionPerformed
 
     private void remove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove1ActionPerformed
@@ -400,7 +600,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LNameActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        if (FName.getText().trim() != "" && LName.getText().trim() != "" && SDate.getText().trim() != "") {
+        if (!"".equals(FName.getText().trim()) && !"".equals(LName.getText().trim()) && !"".equals(SDate.getText().trim())) {
             Customer c = new Customer(FName.getText(), LName.getText(), SDate.getText());
             try {
                 DataFile.AddCustomer(c);
@@ -419,6 +619,94 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     private void SDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SDateActionPerformed
+
+    private void tapsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tapsStateChanged
+
+    }//GEN-LAST:event_tapsStateChanged
+
+    private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
+        ClearActionPerformed(evt);
+        try {
+            List<Customer> l = readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+            for (Customer i : l) {
+                String[] s = new String[7];
+                s[0] = i.getFirstName() + " " + i.getSecondName();
+                s[1] = i.getPassword();
+                s[2] = i.getStartedDate();
+                s[3] = i.getExpiredDate();
+                s[4] = i.getId();
+                s[5] = Integer.toString(i.getCvv());
+                s[6] = i.getMoney();
+                DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+                tb.addRow(s);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR With file", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_showActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
+        String[] names = new String[7];
+        for (int i = 0; i < 7; i++) {
+            names[i] = jTable1.getColumnName(i);
+        }
+        jTable1.setModel(new DefaultTableModel(null, names));
+        first.setText("");
+        Last.setText("");
+        Pass.setText("");
+        start.setText("");
+        ended.setText("");
+        card.setText("");
+        cvv.setText("");
+        money.setText("");
+    }//GEN-LAST:event_ClearActionPerformed
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (jTable1.getSelectedRow() != -1) {
+            DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+            String FullName = tb.getValueAt(jTable1.getSelectedRow(), 0).toString();
+            StringTokenizer t = new StringTokenizer(FullName);
+            String FName = t.nextToken(), LName = "";
+            if (t.hasMoreTokens()) {
+                LName = t.nextToken();
+            }
+            String Passs = tb.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            String Started = tb.getValueAt(jTable1.getSelectedRow(), 2).toString();
+            String end = tb.getValueAt(jTable1.getSelectedRow(), 3).toString();
+            String num = tb.getValueAt(jTable1.getSelectedRow(), 4).toString();
+            String cvv1 = tb.getValueAt(jTable1.getSelectedRow(), 5).toString();
+            String Money = tb.getValueAt(jTable1.getSelectedRow(), 6).toString();
+            first.setText(FName);
+            Last.setText(LName);
+            Pass.setText(Passs);
+            start.setText(Started);
+            ended.setText(end);
+            card.setText(num);
+            cvv.setText(cvv1);
+            money.setText(Money);
+        } else {
+            first.setText("");
+            Last.setText("");
+            Pass.setText("");
+            start.setText("");
+            ended.setText("");
+            card.setText("");
+            cvv.setText("");
+            money.setText("");
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void LastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LastActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,28 +744,48 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Clear;
+    private javax.swing.JButton Delete;
     private javax.swing.JTextField FName;
+    private javax.swing.JPanel FullName;
     private javax.swing.JTextField LName;
+    private javax.swing.JTextField Last;
+    private javax.swing.JTextField Pass;
     private javax.swing.JTextField SDate;
     private javax.swing.JButton add;
     private javax.swing.JButton addCustomer;
+    private javax.swing.JTextField card;
     private javax.swing.JButton customersDetails;
+    private javax.swing.JTextField cvv;
+    private javax.swing.JTextField ended;
+    private javax.swing.JTextField first;
     private javax.swing.JLabel isAdded;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField money;
     private javax.swing.JButton remove;
     private javax.swing.JButton remove1;
+    private javax.swing.JButton show;
+    private javax.swing.JTextField start;
     private javax.swing.JPanel tap1;
     private javax.swing.JPanel tap2;
     private javax.swing.JPanel tap3;
     private javax.swing.JTabbedPane taps;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
