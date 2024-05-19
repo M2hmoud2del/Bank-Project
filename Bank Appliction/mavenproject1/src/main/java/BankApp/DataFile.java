@@ -42,7 +42,7 @@ public class DataFile implements Serializable {
         return customers;
     }
 
-    private static void writeCustomersToFile(String filePath, List<Customer> customers) throws IOException {
+    public static void writeCustomersToFile(String filePath, List<Customer> customers) throws IOException {
         try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {
             for (Customer customer : customers) {
                 obj.writeObject(customer); 
