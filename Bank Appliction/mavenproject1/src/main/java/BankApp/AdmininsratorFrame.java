@@ -6,6 +6,7 @@ package BankApp;
 
 import static BankApp.DataFile.readCustomersFromFile;
 import java.awt.Color;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -27,6 +28,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         initComponents();
         customersDetails.setBackground(new Color(13, 117, 16));
         isAdded.setVisible(false);
+        isRemoved.setVisible(false);
     }
 
     /**
@@ -42,7 +44,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         customersDetails = new javax.swing.JButton();
         addCustomer = new javax.swing.JButton();
         remove = new javax.swing.JButton();
-        remove1 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         taps = new javax.swing.JTabbedPane();
         tap1 = new javax.swing.JPanel();
         FullName = new javax.swing.JPanel();
@@ -79,8 +81,11 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         isAdded = new javax.swing.JLabel();
         tap3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        idLabel = new javax.swing.JTextField();
+        removeButton = new javax.swing.JButton();
+        isRemoved = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1140, 690));
@@ -122,16 +127,16 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         });
         jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 181, 150));
 
-        remove1.setBackground(new java.awt.Color(204, 0, 0));
-        remove1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        remove1.setText("Logout");
-        remove1.setPreferredSize(new java.awt.Dimension(90, 85));
-        remove1.addActionListener(new java.awt.event.ActionListener() {
+        logout.setBackground(new java.awt.Color(204, 0, 0));
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        logout.setText("Logout");
+        logout.setPreferredSize(new java.awt.Dimension(90, 85));
+        logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                remove1ActionPerformed(evt);
+                logoutActionPerformed(evt);
             }
         });
-        jPanel1.add(remove1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 190, 40));
+        jPanel1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 190, 40));
 
         taps.setBackground(new java.awt.Color(255, 255, 255));
         taps.setPreferredSize(new java.awt.Dimension(1024, 700));
@@ -319,7 +324,9 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                         .addGap(112, 112, 112)))
                 .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
-            .addComponent(jScrollPane1)
+            .addGroup(FullNameLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FullNameLayout.setVerticalGroup(
             FullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,8 +359,8 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                     .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout tap1Layout = new javax.swing.GroupLayout(tap1);
@@ -487,37 +494,71 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Customer ID");
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        idLabel.setBackground(new java.awt.Color(255, 255, 255));
+        idLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        idLabel.setForeground(new java.awt.Color(0, 0, 0));
 
-        jButton2.setBackground(new java.awt.Color(153, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("REMOVE");
+        removeButton.setBackground(new java.awt.Color(153, 0, 0));
+        removeButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        removeButton.setForeground(new java.awt.Color(255, 255, 255));
+        removeButton.setText("REMOVE");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+
+        isRemoved.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        isRemoved.setForeground(new java.awt.Color(51, 204, 0));
+        isRemoved.setText("Customer Removed Succsufully");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel12.setText("Warnings : write Customer ID such That \" XXXX XXXX XXXX XXXX \" .");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Where X is digit which number of Card Number which belnogs to Customer Card.");
 
         javax.swing.GroupLayout tap3Layout = new javax.swing.GroupLayout(tap3);
         tap3.setLayout(tap3Layout);
         tap3Layout.setHorizontalGroup(
             tap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tap3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addGroup(tap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tap3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tap3Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(isRemoved, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tap3Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tap3Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         tap3Layout.setVerticalGroup(
             tap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tap3Layout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addGroup(tap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(378, 378, 378))
+                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(isRemoved, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
         );
 
         taps.addTab("tab3", tap3);
@@ -531,7 +572,9 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
 
     private void customersDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersDetailsActionPerformed
         taps.setSelectedIndex(0);
+        idLabel.setText("");
         FName.setText("");
+        isRemoved.setVisible(false);
         LName.setText("");
         SDate.setText("");
         isAdded.setVisible(false);
@@ -551,6 +594,8 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
 
     private void addCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerActionPerformed
         taps.setSelectedIndex(1);
+        idLabel.setText("");
+        isRemoved.setVisible(false);
         FName.setText("");
         LName.setText("");
         SDate.setText("");
@@ -571,6 +616,8 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         taps.setSelectedIndex(2);
+        idLabel.setText("");
+        isRemoved.setVisible(false);
         FName.setText("");
         LName.setText("");
         SDate.setText("");
@@ -589,9 +636,10 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         ClearActionPerformed(evt);
     }//GEN-LAST:event_removeActionPerformed
 
-    private void remove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_remove1ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+
+        System.exit(0);
+    }//GEN-LAST:event_logoutActionPerformed
 
     private void FNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FNameActionPerformed
         // TODO add your handling code here:
@@ -650,7 +698,36 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_showActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        if (jTable1.getSelectedRow() != -1) {
+            Customer c = new Customer(card.getText(), Integer.parseInt(cvv.getText()), first.getText(), Last.getText(), ended.getText());
+            c.setMoney(money.getText());
+            c.setStartedDate(start.getText());
+            c.setPassword(Pass.getText());
+            try {
+                List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                if (!l.contains(c)) {
+                    for (int i = 0; i < l.size(); i++) {
+                        Customer existingCustomer = l.get(i);
+                        if ((existingCustomer.getFirstName() + existingCustomer.getSecondName()).equals(c.getFirstName() + c.getSecondName())) {
+                            l.set(i, c);
+                            break;
+                        }
+                    }
+                    DataFile.writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt", l);
+                    showActionPerformed(evt);
+                } else {
 
+                }
+            } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "File Not Found !", "ERROR 102", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Input or Output File Erorr !", "ERROR 103", JOptionPane.ERROR_MESSAGE);
+            } catch (ClassNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "Cannot Found Class File !", "ERROR 104", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please choose The Customer you want to Update", "ERORR 101", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_updateActionPerformed
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
@@ -712,6 +789,37 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LastActionPerformed
 
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        String id = idLabel.getText();
+        if (id.trim() != "") {
+            try {
+                List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                boolean isExist = false;
+                for (Customer i : l) {
+                    if (i.getId().equals(id)) {
+                        isExist = true;
+                        l.remove(i);
+                        DataFile.writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt", l);
+                        break;
+                    }
+                }
+                if (isExist) {
+                    isRemoved.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "NOT FOUND", "Please ,Enter Correct Customer Id\nCheck if id is typed with spacecs", JOptionPane.ERROR_MESSAGE);
+                    isRemoved.setVisible(false);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(AdmininsratorFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AdmininsratorFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            idLabel.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "ERORR", "Please ,Enter id of Customer you want to Remove from system\nExample such That \"XXXX XXXX XXXX XXXX\"", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_removeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -763,12 +871,15 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     private javax.swing.JTextField cvv;
     private javax.swing.JTextField ended;
     private javax.swing.JTextField first;
+    private javax.swing.JTextField idLabel;
     private javax.swing.JLabel isAdded;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel isRemoved;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -780,10 +891,10 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton logout;
     private javax.swing.JTextField money;
     private javax.swing.JButton remove;
-    private javax.swing.JButton remove1;
+    private javax.swing.JButton removeButton;
     private javax.swing.JButton show;
     private javax.swing.JTextField start;
     private javax.swing.JPanel tap1;
