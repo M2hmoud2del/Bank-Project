@@ -6,6 +6,16 @@ public class Customer implements Serializable {
     int cvv;
     String firstName,secondName,startedDate,expiredDate,cardNumber,password="123456789",money="0$";
 
+//    public Customer(int cvv, String firstName, String secondName, String startedDate, String expiredDate, String cardNumber,String money) {
+//        this.cvv = cvv;
+//        this.firstName = firstName;
+//        this.secondName = secondName;
+//        this.startedDate = startedDate;
+//        this.expiredDate = expiredDate;
+//        this.cardNumber = cardNumber;
+//        this.money=money;
+//    }
+
     public Customer(String cardNumber, int cvv, String firstName, String secondName, String expiredDate) {
         this.cardNumber = cardNumber;
         this.cvv = cvv;
@@ -127,11 +137,14 @@ public class Customer implements Serializable {
         if (!Objects.equals(this.expiredDate, other.expiredDate)) {
             return false;
         }
-        return Objects.equals(this.cardNumber, other.cardNumber);
+        if (!Objects.equals(this.cardNumber, other.cardNumber)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        return Objects.equals(this.money, other.money);
     }
-
-
-
     @Override
     public String toString() {
         return "Customer{" + "id=" + cardNumber + ", cvv=" + cvv + ", firstName=" + firstName + ", secondName=" + secondName + ", expiredDate=" + expiredDate + '}';
