@@ -146,7 +146,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="193" y="0" width="971" height="-1"/>
+              <AbsoluteConstraints x="193" y="-40" width="971" height="740"/>
             </Constraint>
           </Constraints>
 
@@ -289,7 +289,7 @@
                                   <Component id="cvv" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="43" max="32767" attributes="0"/>
+                              <EmptySpace pref="83" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" max="-2" attributes="0">
                                   <Component id="show" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="update" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -661,7 +661,7 @@
                               <Component id="jLabel4" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="SDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="148" max="32767" attributes="0"/>
+                          <EmptySpace pref="188" max="32767" attributes="0"/>
                           <Component id="isAdded" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           <Component id="add" min="-2" pref="55" max="-2" attributes="0"/>
@@ -851,7 +851,7 @@
                           <Component id="jLabel12" min="-2" pref="81" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" pref="81" max="-2" attributes="0"/>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace pref="69" max="32767" attributes="0"/>
                           <Component id="isRemoved" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                       </Group>
