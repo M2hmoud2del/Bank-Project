@@ -694,7 +694,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                 tb.addRow(s);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ERROR With file", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERROR", "ERROR With file", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_showActionPerformed
 
@@ -792,7 +792,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         String id = idLabel.getText();
-        if (id.trim() != "") {
+        if (!id.trim().equals("")) {
             try {
                 List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
                 boolean isExist = false;
@@ -807,7 +807,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                 if (isExist) {
                     isRemoved.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "NOT FOUND", "Please ,Enter Correct Customer Id\nCheck if id is typed with spacecs", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Please ,Enter Correct Customer Id\nCheck if id is typed with spacecs", "NOT FOUND", JOptionPane.ERROR_MESSAGE);
                     isRemoved.setVisible(false);
                 }
             } catch (IOException ex) {
@@ -817,7 +817,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
             }
             idLabel.setText("");
         } else {
-            JOptionPane.showMessageDialog(this, "ERORR", "Please ,Enter id of Customer you want to Remove from system\nExample such That \"XXXX XXXX XXXX XXXX\"", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please ,Enter id of Customer you want to Remove from system\nExample such That \"XXXX XXXX XXXX XXXX\"", "ERORR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_removeButtonActionPerformed
 
