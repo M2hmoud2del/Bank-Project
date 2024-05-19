@@ -28,6 +28,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         initComponents();
         customersDetails.setBackground(new Color(13, 117, 16));
         isAdded.setVisible(false);
+        setResizable(false);
         isRemoved.setVisible(false);
     }
 
