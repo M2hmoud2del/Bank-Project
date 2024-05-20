@@ -638,8 +638,13 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-
-        System.exit(0);
+        dispose();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Bank_Login().show();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void FNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FNameActionPerformed
