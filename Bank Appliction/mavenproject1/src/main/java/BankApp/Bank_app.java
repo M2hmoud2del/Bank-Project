@@ -63,6 +63,7 @@ public class Bank_app extends javax.swing.JFrame {
         taps = new javax.swing.JTabbedPane();
         dash_Panel = new javax.swing.JPanel();
         trans_Panel = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         transfer_Panel = new javax.swing.JPanel();
         loan_Panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -263,15 +264,30 @@ public class Bank_app extends javax.swing.JFrame {
 
         trans_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
+        jButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jButton2.setText("Bank Transfer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout trans_PanelLayout = new javax.swing.GroupLayout(trans_Panel);
         trans_Panel.setLayout(trans_PanelLayout);
         trans_PanelLayout.setHorizontalGroup(
             trans_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGroup(trans_PanelLayout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(jButton2)
+                .addContainerGap(506, Short.MAX_VALUE))
         );
         trans_PanelLayout.setVerticalGroup(
             trans_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGroup(trans_PanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jButton2)
+                .addContainerGap(552, Short.MAX_VALUE))
         );
 
         taps.addTab("tab2", trans_Panel);
@@ -550,6 +566,10 @@ public class Bank_app extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_totalActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,6 +604,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JButton dash;
     private javax.swing.JPanel dash_Panel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
