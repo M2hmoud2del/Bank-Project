@@ -33,7 +33,7 @@ public class Bank_app extends javax.swing.JFrame {
          Housingloan=0;
        Personalloan=0;
          vechileloan=0;
-        
+        setResizable(false);
        
         
     }

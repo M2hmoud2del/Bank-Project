@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package BankApp;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author ezzat
  */
 public class Bank_Login extends javax.swing.JFrame {
-    
+
     File f = new File("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
     FileInputStream fi;
     ArrayList<User> users = new ArrayList<>();
@@ -26,11 +27,13 @@ public class Bank_Login extends javax.swing.JFrame {
     Bank_app client;
     AdmininsratorFrame ad;
     Bank_register br;
+
     /**
      * Creates new form Bank_Login
      */
     public Bank_Login() {
         initComponents();
+        setResizable(false);
     }
 
     /**
@@ -151,45 +154,45 @@ public class Bank_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_T1ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        String name,pass, id = null;
+        String name, pass, id = null;
         int flag = 0;
         name = T1.getText();
         pass = T2.getText();
-        boolean admin=false;
+        boolean admin = false;
         try {
             fi = new FileInputStream(f);
             ois = new ObjectInputStream(fi);
             users = (ArrayList<User>) ois.readObject();
-            for(int i=0; i<users.size(); i++){
-            if(name.equals(users.get(i).getUsername()) && pass.equals(users.get(i).getPass())){
-                flag =1;
-                admin = users.get(i).isIs_admin();
-                id = users.get(i).getId();
-                break;
-        }
-        }
-            
+            for (int i = 0; i < users.size(); i++) {
+                if (name.equals(users.get(i).getUsername()) && pass.equals(users.get(i).getPass())) {
+                    flag = 1;
+                    admin = users.get(i).isIs_admin();
+                    id = users.get(i).getId();
+                    break;
+                }
+            }
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{ if(flag == 0){
-            JOptionPane.showMessageDialog(null, "You have entered wrong password or username.");
-            }else{
-                if(!admin){
-            client = new Bank_app(id);
-            client.setVisible(true);
-            this.setVisible(false);
-                }else{
-                ad = new AdmininsratorFrame();
-                ad.setVisible(true);
-                this.setVisible(false);
+        } finally {
+            if (flag == 0) {
+                JOptionPane.showMessageDialog(null, "You have entered wrong password or username.");
+            } else {
+                if (!admin) {
+                    client = new Bank_app(id);
+                    client.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    ad = new AdmininsratorFrame();
+                    ad.setVisible(true);
+                    this.setVisible(false);
                 }
-            }}
+            }
+        }
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
