@@ -4,11 +4,16 @@ BankApp\Bank_app$12.class
 BankApp\Bank_Login.class
 BankApp\AdmininsratorFrame$5.class
 BankApp\User.class
+BankApp\Bank_register$2.class
+BankApp\Bank_register$5.class
 BankApp\Bank_app$8.class
 BankApp\DataFile.class
 BankApp\AdmininsratorFrame$13.class
+BankApp\Bank_Login$4.class
 BankApp\Customer.class
+BankApp\Bank_register.class
 BankApp\AdmininsratorFrame$3.class
+BankApp\Bank_register$4.class
 BankApp\AdmininsratorFrame$16.class
 BankApp\Bank_app$10.class
 BankApp\AdmininsratorFrame$14.class
@@ -21,6 +26,7 @@ BankApp\Bank_Login$2.class
 BankApp\AdmininsratorFrame$8.class
 BankApp\Bank_app$7.class
 BankApp\AdmininsratorFrame$12.class
+BankApp\Bank_register$1.class
 BankApp\Bank_Login$3.class
 BankApp\AdmininsratorFrame$1.class
 BankApp\App.class
@@ -37,4 +43,5 @@ BankApp\AdmininsratorFrame$9.class
 BankApp\AdmininsratorFrame$4.class
 BankApp\AdmininsratorFrame$7.class
 BankApp\AdmininsratorFrame$10.class
+BankApp\Bank_register$3.class
 BankApp\Bank_app$2.class
