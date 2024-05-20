@@ -4,8 +4,15 @@
  */
 package BankApp;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JColorChooser;
 
 import javax.swing.JOptionPane;
  
@@ -13,8 +20,8 @@ public class Bank_app extends javax.swing.JFrame {
     String id;
     private double a,Housingloan,Personalloan,vechileloan, result;
     private int months;
+  Customer c;
  
-  
     public Bank_app(String id) {
         this.id = id;
         initComponents();
@@ -56,7 +63,6 @@ public class Bank_app extends javax.swing.JFrame {
         trans = new javax.swing.JButton();
         transfer = new javax.swing.JButton();
         loan = new javax.swing.JButton();
-        wallets = new javax.swing.JButton();
         messages = new javax.swing.JButton();
         services = new javax.swing.JButton();
         settings = new javax.swing.JButton();
@@ -88,6 +94,11 @@ public class Bank_app extends javax.swing.JFrame {
         messages_Panel = new javax.swing.JPanel();
         services_Panel = new javax.swing.JPanel();
         settings_Panel = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -174,16 +185,6 @@ public class Bank_app extends javax.swing.JFrame {
             }
         });
 
-        wallets.setBackground(new java.awt.Color(0, 102, 102));
-        wallets.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        wallets.setText("My Wallets");
-        wallets.setPreferredSize(new java.awt.Dimension(90, 85));
-        wallets.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                walletsActionPerformed(evt);
-            }
-        });
-
         messages.setBackground(new java.awt.Color(0, 102, 102));
         messages.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         messages.setText("Messages");
@@ -226,10 +227,9 @@ public class Bank_app extends javax.swing.JFrame {
                     .addComponent(messages, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(services, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wallets, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(trans, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(transfer, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,14 +243,12 @@ public class Bank_app extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(wallets, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(messages, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(services, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 130, 690));
@@ -261,11 +259,11 @@ public class Bank_app extends javax.swing.JFrame {
         dash_Panel.setLayout(dash_PanelLayout);
         dash_PanelLayout.setHorizontalGroup(
             dash_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         dash_PanelLayout.setVerticalGroup(
             dash_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
 
         taps.addTab("tab1", dash_Panel);
@@ -288,14 +286,14 @@ public class Bank_app extends javax.swing.JFrame {
             .addGroup(trans_PanelLayout.createSequentialGroup()
                 .addGap(241, 241, 241)
                 .addComponent(jButton2)
-                .addContainerGap(527, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         trans_PanelLayout.setVerticalGroup(
             trans_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(trans_PanelLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jButton2)
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
 
         taps.addTab("tab2", trans_Panel);
@@ -382,7 +380,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addGroup(transfer_PanelLayout.createSequentialGroup()
                         .addGap(423, 423, 423)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         transfer_PanelLayout.setVerticalGroup(
             transfer_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,7 +401,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         taps.addTab("tab3", transfer_Panel);
@@ -491,12 +489,12 @@ public class Bank_app extends javax.swing.JFrame {
                     .addGroup(loan_PanelLayout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(loan_PanelLayout.createSequentialGroup()
                     .addGap(156, 156, 156)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(682, Short.MAX_VALUE)))
+                    .addContainerGap(432, Short.MAX_VALUE)))
         );
         loan_PanelLayout.setVerticalGroup(
             loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,10 +517,10 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loan_PanelLayout.createSequentialGroup()
-                    .addContainerGap(362, Short.MAX_VALUE)
+                    .addContainerGap(242, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(232, 232, 232)))
         );
@@ -535,11 +533,11 @@ public class Bank_app extends javax.swing.JFrame {
         wallets_Panel.setLayout(wallets_PanelLayout);
         wallets_PanelLayout.setHorizontalGroup(
             wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         wallets_PanelLayout.setVerticalGroup(
             wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
 
         taps.addTab("tab5", wallets_Panel);
@@ -550,11 +548,11 @@ public class Bank_app extends javax.swing.JFrame {
         messages_Panel.setLayout(messages_PanelLayout);
         messages_PanelLayout.setHorizontalGroup(
             messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         messages_PanelLayout.setVerticalGroup(
             messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
 
         taps.addTab("tab6", messages_Panel);
@@ -565,31 +563,93 @@ public class Bank_app extends javax.swing.JFrame {
         services_Panel.setLayout(services_PanelLayout);
         services_PanelLayout.setHorizontalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         services_PanelLayout.setVerticalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
 
         taps.addTab("tab7", services_Panel);
 
         settings_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
+        jButton5.setBackground(new java.awt.Color(0, 0, 51));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton5.setText("OK");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(255, 0, 0));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton6.setText("Logout");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton7.setText("Help!");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel9.setText("Click here to Choose mode");
+
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dark Mode", "Light Mode" }));
+
         javax.swing.GroupLayout settings_PanelLayout = new javax.swing.GroupLayout(settings_Panel);
         settings_Panel.setLayout(settings_PanelLayout);
         settings_PanelLayout.setHorizontalGroup(
             settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGroup(settings_PanelLayout.createSequentialGroup()
+                .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(297, 297, 297)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         settings_PanelLayout.setVerticalGroup(
             settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGroup(settings_PanelLayout.createSequentialGroup()
+                .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(132, 132, 132)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         taps.addTab("tab8", settings_Panel);
 
-        getContentPane().add(taps, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 1010, 690));
+        getContentPane().add(taps, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 760, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -618,41 +678,113 @@ public class Bank_app extends javax.swing.JFrame {
         taps.setSelectedIndex(2);
     }//GEN-LAST:event_transferActionPerformed
 
-    private void walletsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walletsActionPerformed
-        taps.setSelectedIndex(4);
-    }//GEN-LAST:event_walletsActionPerformed
-
     private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
         taps.setSelectedIndex(7);
     }//GEN-LAST:event_settingsActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        JOptionPane.showMessageDialog(null, "call 911\nto get help");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        dispose();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Bank_Login().show();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        JColorChooser colorChooser = new JColorChooser();
+        String x;
+        x = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+        if(x.equals("Dark Mode"))
+        {
+            settings_Panel.setBackground(Color.DARK_GRAY);
+            services_Panel.setBackground(Color.DARK_GRAY);
+            messages_Panel.setBackground(Color.DARK_GRAY);
+            loan_Panel.setBackground(Color.DARK_GRAY);
+            transfer_Panel.setBackground(Color.DARK_GRAY);
+            trans_Panel.setBackground(Color.DARK_GRAY);
+            dash_Panel.setBackground(Color.DARK_GRAY);
+            settings.setBackground(Color.BLACK );
+            services.setBackground(Color.BLACK);
+            messages.setBackground(Color.BLACK);
+            transfer.setBackground(Color.BLACK);
+            trans.setBackground(Color.BLACK);
+            dash.setBackground(Color.BLACK);
+            loan.setBackground(Color.BLACK);
+            jPanel1.setBackground(Color.WHITE);
+            loan.setForeground(Color.WHITE);
+            settings.setForeground(Color.WHITE);
+            messages.setForeground(Color.WHITE);
+            services.setForeground(Color.WHITE);
+            trans.setForeground(Color.WHITE);
+            dash.setForeground(Color.WHITE);
+            transfer.setForeground(Color.WHITE);
+
+        }
+        if(x.equals("Light Mode"))
+        {
+            settings_Panel.setBackground(Color.LIGHT_GRAY);
+            services_Panel.setBackground(Color.LIGHT_GRAY);
+            messages_Panel.setBackground(Color.LIGHT_GRAY);
+            loan_Panel.setBackground(Color.LIGHT_GRAY);
+            transfer_Panel.setBackground(Color.LIGHT_GRAY);
+            trans_Panel.setBackground(Color.LIGHT_GRAY);
+            dash_Panel.setBackground(Color.LIGHT_GRAY);
+            settings.setBackground(Color.green );
+            services.setBackground(Color.green);
+            messages.setBackground(Color.green);
+            transfer.setBackground(Color.green);
+            trans.setBackground(Color.green);
+            dash.setBackground(Color.green);
+            loan.setBackground(Color.green);
+            loan.setForeground(Color.BLACK);
+            settings.setForeground(Color.BLACK);
+            messages.setForeground(Color.BLACK);
+            services.setForeground(Color.BLACK);
+            trans.setForeground(Color.BLACK);
+            dash.setForeground(Color.BLACK);
+            transfer.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalActionPerformed
+
+    private void amountcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountcbActionPerformed
+
+    }//GEN-LAST:event_amountcbActionPerformed
 
     private void tybecbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tybecbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tybecbActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
-         
-          a=Integer.parseInt(amountcb.getItemAt(amountcb.getSelectedIndex()));
+
+        a=Integer.parseInt(amountcb.getItemAt(amountcb.getSelectedIndex()));
         months=Integer.parseInt(tf.getText());
         if(!(0<months))
         {
-             JOptionPane.showMessageDialog(this, "you can't Enter negative Month");
-         
+            JOptionPane.showMessageDialog(this, "you can't Enter negative Month");
+
         }
-      
+
         String tybe =tybecb.getItemAt(tybecb.getSelectedIndex());
-     
-        
-    Housingloan=0.15;
-    Personalloan=0.15;
-    vechileloan=0.1;
- 
+
+        Housingloan=0.15;
+        Personalloan=0.15;
+        vechileloan=0.1;
+
         switch (tybe) {
             case "Housing" -> {
-               
+
                 result= (a*months*Housingloan)+a;
-             
+
             }
             case "Personal" -> {
                 result= (a*months*Personalloan)+a;
@@ -663,52 +795,44 @@ public class Bank_app extends javax.swing.JFrame {
             default -> {
             }
         }
-        
-        if(a>5000) {
-      
+
+        if(a>Double.parseDouble(c.getMoney())) {
+
             JOptionPane.showMessageDialog(this, "Your Balance isn't Enough");
-         
+
         }
         else{
-           
-        total.setText(Double.toString(result));
-             
-        } 
-        
-               // TODO add your handling code here:
+
+            total.setText(Double.toString(result));
+
+        }
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void amountcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountcbActionPerformed
-      
-    }//GEN-LAST:event_amountcbActionPerformed
-
-    private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_totalActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -747,6 +871,10 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -755,6 +883,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -779,7 +908,6 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JButton transfer;
     private javax.swing.JPanel transfer_Panel;
     private javax.swing.JComboBox<String> tybecb;
-    private javax.swing.JButton wallets;
     private javax.swing.JPanel wallets_Panel;
     // End of variables declaration//GEN-END:variables
 }
