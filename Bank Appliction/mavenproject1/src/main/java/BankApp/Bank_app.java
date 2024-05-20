@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
  
 public class Bank_app extends javax.swing.JFrame {
     String id;
-    private int a,Housingloan,Personalloan,vechileloan;
+    private double a,Housingloan,Personalloan,vechileloan, result;
     private int months;
  
-    private float result;
+  
     public Bank_app(String id) {
         this.id = id;
         initComponents();
@@ -25,7 +25,7 @@ public class Bank_app extends javax.swing.JFrame {
     public Bank_app() {
         this.id = null;
         initComponents();
-                 total.setVisible(false);
+               
             a=0;
             months=0;
          result=0;
@@ -75,6 +75,7 @@ public class Bank_app extends javax.swing.JFrame {
         tf = new javax.swing.JTextField();
         amountcb = new javax.swing.JComboBox<>();
         total = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         wallets_Panel = new javax.swing.JPanel();
         messages_Panel = new javax.swing.JPanel();
         services_Panel = new javax.swing.JPanel();
@@ -120,7 +121,6 @@ public class Bank_app extends javax.swing.JFrame {
         jTabbedPane2.addTab("tab1", jPanel16);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -313,7 +313,7 @@ public class Bank_app extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Welcome to Loan Window");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -339,7 +339,7 @@ public class Bank_app extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel4.setText("Duration :");
+        jLabel4.setText("Total:");
 
         amountcb.setForeground(new java.awt.Color(255, 204, 204));
         amountcb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1000", "3000", "5000", "10000", "20000", "50000", "100000", "300000", "500000", "1000000" }));
@@ -356,6 +356,10 @@ public class Bank_app extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel5.setText("Duration :");
+
         javax.swing.GroupLayout loan_PanelLayout = new javax.swing.GroupLayout(loan_Panel);
         loan_Panel.setLayout(loan_PanelLayout);
         loan_PanelLayout.setHorizontalGroup(
@@ -368,22 +372,28 @@ public class Bank_app extends javax.swing.JFrame {
                                 .addGap(146, 146, 146)
                                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tybecb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(tf)
                                     .addComponent(amountcb, 0, 160, Short.MAX_VALUE)))
                             .addGroup(loan_PanelLayout.createSequentialGroup()
-                                .addGap(246, 246, 246)
+                                .addGap(182, 182, 182)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(82, 82, 82)
+                        .addGap(95, 95, 95)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(loan_PanelLayout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
+            .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loan_PanelLayout.createSequentialGroup()
+                    .addGap(156, 156, 156)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(682, Short.MAX_VALUE)))
         );
         loan_PanelLayout.setVerticalGroup(
             loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,15 +407,21 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountcb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(amountcb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                    .addComponent(tf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loan_PanelLayout.createSequentialGroup()
+                    .addContainerGap(362, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(232, 232, 232)))
         );
 
         taps.addTab("tab4", loan_Panel);
@@ -523,35 +539,36 @@ public class Bank_app extends javax.swing.JFrame {
         }
       
         String tybe =tybecb.getItemAt(tybecb.getSelectedIndex());
-        float amountpermonth=a/months;
-    Housingloan=5;
-    Personalloan=5;
-    vechileloan=4;
-    
+     
+        
+    Housingloan=0.15;
+    Personalloan=0.15;
+    vechileloan=0.1;
+ 
         switch (tybe) {
             case "Housing" -> {
-                result=(Housingloan*a)/(100*months);
-                result+=a;
+               
+                result= (a*months*Housingloan)+a;
+             
             }
             case "Personal" -> {
-                result=(Personalloan*a)/(100*months);
-                result+=a;
+                result= (a*months*Personalloan)+a;
             }
             case "Vechile" -> {
-                result=(vechileloan*a)/(100*months);
-                result+=a;
+                result=(a*months*vechileloan)+a;
             }
             default -> {
             }
         }
+        
         if(a>5000) {
       
             JOptionPane.showMessageDialog(this, "Your Balance isn't Enough");
          
         }
         else{
-            total.setVisible(true);
-        total.setText(Float.toString(result));
+           
+        total.setText(Double.toString(result));
              
         } 
         
@@ -609,6 +626,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
