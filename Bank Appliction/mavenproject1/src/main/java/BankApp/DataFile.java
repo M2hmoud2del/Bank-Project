@@ -116,5 +116,21 @@ public class DataFile implements Serializable {
         Payment.add(c);
         writePaymentsToFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills",Payment);
     }
+         public static Customer readCustomerFromFile(String filePath) throws IOException, ClassNotFoundException{
+         Customer c = new Customer(null, 0, null, null, null);
+         try (FileInputStream f = new FileInputStream(filePath); ObjectInputStream obj = new ObjectInputStream(f)) {
+            while (true) {
+                try {
+                     c = (Customer) obj.readObject();
+                    
+                } catch (EOFException e) {
+                    obj.close();
+                    break;
+                }
+            }
+        }
+        
+         return c;
+         }
 }
 

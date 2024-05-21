@@ -3,12 +3,16 @@
  */
 package BankApp;
 
+import java.io.IOException;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Customer c;
+        c = DataFile.readCustomerFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+        System.out.print(c);
     }
 }

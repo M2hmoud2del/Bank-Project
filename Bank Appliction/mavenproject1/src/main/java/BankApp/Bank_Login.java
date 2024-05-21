@@ -19,19 +19,27 @@ import javax.swing.JOptionPane;
  * @author ezzat
  */
 public class Bank_Login extends javax.swing.JFrame {
-    
-    
+    Customer c;
+    File temp = new File("temp.txt");
     List<User> users = new ArrayList<>();
     Bank_app client;
     AdmininsratorFrame ad;
     Bank_register br;
+    DataFile df;
     /**
      * Creates new form Bank_Login
      */
-    public Bank_Login() {
+    public Bank_Login() throws IOException, ClassNotFoundException {
+        if(temp.length()!=0){
+        c = df.readCustomerFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+        client = new Bank_app(c);
+            client.setVisible(true);
+            this.setVisible(false);
+        }
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
