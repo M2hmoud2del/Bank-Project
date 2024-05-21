@@ -92,29 +92,26 @@ public class DataFile implements Serializable {
         try (FileInputStream f = new FileInputStream(filePath); ObjectInputStream obj = new ObjectInputStream(f)) {
             while (true) {
                 try {
-                    Payments Payment = (Payments) obj.readObject();
-                    payments.add(Payment);
+                    Payments payment = (Payments) obj.readObject();
+                    payments.add(payment);
                 } catch (EOFException e) {
-                    obj.close();
                     break;
                 }
             }
         }
         return payments;
-        }
+    }
          public static void writePaymentsToFile(String filePath, List<Payments> payments) throws IOException {
         try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {
             for (Payments payment : payments) {
-                obj.writeObject(payment); 
-           }
-            obj.close();
+                obj.writeObject(payment);
+            }
         }
-        
     }
-         public static void AddPayments(Payments c) throws IOException, ClassNotFoundException {
-        List<Payments>Payment=readPaymentsFromFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills");
-        Payment.add(c);
-        writePaymentsToFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills",Payment);
+        public static void addPayment(Payments c, String filePath) throws IOException, ClassNotFoundException {
+        List<Payments> payments = readPaymentsFromFile(filePath);
+        payments.add(c);
+        writePaymentsToFile(filePath, payments);
     }
          public static Customer readCustomerFromFile(String filePath) throws IOException, ClassNotFoundException{
          Customer c = new Customer(null, 0, null, null, null);
