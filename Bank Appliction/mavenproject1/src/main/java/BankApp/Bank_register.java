@@ -22,13 +22,16 @@ import javax.swing.JOptionPane;
  * @author Abdelrahman
  */
 public class Bank_register extends javax.swing.JFrame {
+
+    private static final String CUSTOMER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt";
+    private static final String PAYMENTS_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
+
     List<User> users = new ArrayList<>();
     List<Customer> c = new ArrayList<>();
     Customer cu;
     User u;
     Bank_Login bl;
     Bank_app client;
-    
 
     /**
      * Creates new form Bank_register
@@ -209,52 +212,56 @@ public class Bank_register extends javax.swing.JFrame {
     }//GEN-LAST:event_T3ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-       String name , pass , id ;
-       int flag=0, flag1=0;
-       name = T1.getText();
-       pass = T2.getText();
-       id = T3.getText();
+        String name, pass, id;
+        int flag = 0, flag1 = 0;
+        name = T1.getText();
+        pass = T2.getText();
+        id = T3.getText();
         try {
             users = DataFile.readUserFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
             c = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
             System.out.print(users.size());
-            for(int i=0; i<users.size();i++){
-        if(id.equals(users.get(i).getId())) {flag1 = 1;JOptionPane.showMessageDialog(null, "This account already exists"); break;}
-        }
-            if(flag1==0){
-            for(int i=0; i<c.size(); i++){
-            if(id.equals(c.get(i).getId())) {
-           u = new User(name, pass, id, false);
-           cu = c.get(i);
-           flag = 1;
-           break;
-           }
+            for (int i = 0; i < users.size(); i++) {
+                if (id.equals(users.get(i).getId())) {
+                    flag1 = 1;
+                    JOptionPane.showMessageDialog(null, "This account already exists");
+                    break;
+                }
             }
+            if (flag1 == 0) {
+                for (int i = 0; i < c.size(); i++) {
+                    if (id.equals(c.get(i).getId())) {
+                        u = new User(name, pass, id, false);
+                        cu = c.get(i);
+                        flag = 1;
+                        break;
+                    }
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-         System.out.print(users.size());
-            if(flag1 == 0){
-            if(flag == 0){
-               JOptionPane.showMessageDialog(null, "You have entered wrong Id.");}
-               else{
-                try {
-                    DataFile.AddUser(u);
-                } catch (IOException ex) {
-                    Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            System.out.print(users.size());
+            if (flag1 == 0) {
+                if (flag == 0) {
+                    JOptionPane.showMessageDialog(null, "You have entered wrong Id.");
+                } else {
+                    try {
+                        DataFile.AddUser(u);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    client = new Bank_app(cu);
+                    client.setVisible(true);
+                    this.setVisible(false);
                 }
-                
-       client = new Bank_app(cu);
-            client.setVisible(true);
-            this.setVisible(false);
-       }
-               }}
+            }
+        }
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
