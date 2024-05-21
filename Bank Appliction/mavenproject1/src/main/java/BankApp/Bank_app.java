@@ -25,6 +25,7 @@ public class Bank_app extends javax.swing.JFrame {
 
     private static final String CUSTOMER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt";
     private static final String PAYMENTS_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
+ private static final String USER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
 
     private double a, Housingloan, Personalloan, vechileloan, result;
     private int months;
@@ -114,6 +115,13 @@ public class Bank_app extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        old_pass = new javax.swing.JTextField();
+        new_pass = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        new_pass2 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -155,7 +163,6 @@ public class Bank_app extends javax.swing.JFrame {
         jTabbedPane2.addTab("tab1", jPanel16);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -657,6 +664,38 @@ public class Bank_app extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dark Mode", "Light Mode" }));
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton2.setText(" change Password");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        old_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                old_passActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel11.setText("enter new password");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel12.setText("enter old password");
+
+        new_pass2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new_pass2ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel13.setText("renter new password");
+
         javax.swing.GroupLayout settings_PanelLayout = new javax.swing.GroupLayout(settings_Panel);
         settings_Panel.setLayout(settings_PanelLayout);
         settings_PanelLayout.setHorizontalGroup(
@@ -670,13 +709,31 @@ public class Bank_app extends javax.swing.JFrame {
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
             .addGroup(settings_PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
-            .addGroup(settings_PanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_PanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(old_pass)
+                    .addComponent(new_pass)
+                    .addComponent(new_pass2, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(127, 127, 127))
+            .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(settings_PanelLayout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(807, Short.MAX_VALUE)))
         );
         settings_PanelLayout.setVerticalGroup(
             settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -686,11 +743,31 @@ public class Bank_app extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
+                .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(settings_PanelLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(old_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(new_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(new_pass2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jButton7)
                 .addGap(68, 68, 68))
+            .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(settings_PanelLayout.createSequentialGroup()
+                    .addGap(177, 177, 177)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(451, Short.MAX_VALUE)))
         );
 
         taps.addTab("tab8", settings_Panel);
@@ -949,6 +1026,53 @@ public class Bank_app extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     
+       
+        try {
+           List<User> l = DataFile.readUserFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+         
+                    for (int i = 0; i < l.size(); i++) {
+                        User existingUser = l.get(i);
+                        if ((existingUser.getId().equals(c.getId()))) {
+                            if(old_pass.getText().equals(existingUser.getPass())){
+                                if(new_pass.getText().equals(new_pass2.getText())){
+                            existingUser.setPass(new_pass.getText()); 
+                            l.set(i, existingUser);
+                            break;
+                            
+                            }
+                                else{ JOptionPane.showMessageDialog(null,"Password dismatch stubid");
+                               break; }
+                            }else{
+                                 JOptionPane.showMessageDialog(null,"Wrong Password stubid");
+                            }
+                            
+                            
+                            break;
+                        
+                    }
+                        
+        }
+        DataFile.writeUsersToFile(USER_FILE_PATH, l);
+        
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void old_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_old_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_old_passActionPerformed
+
+    private void new_pass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_pass2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_new_pass2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -984,6 +1108,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JButton dash;
     private javax.swing.JPanel dash_Panel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -991,6 +1116,9 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1012,6 +1140,9 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel loan_Panel;
     private javax.swing.JButton messages;
     private javax.swing.JPanel messages_Panel;
+    private javax.swing.JTextField new_pass;
+    private javax.swing.JTextField new_pass2;
+    private javax.swing.JTextField old_pass;
     private javax.swing.JButton services;
     private javax.swing.JPanel services_Panel;
     private javax.swing.JButton settings;
