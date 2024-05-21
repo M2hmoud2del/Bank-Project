@@ -343,8 +343,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="356" max="-2" attributes="0"/>
+                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="545" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -357,13 +357,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="transtable">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
+                      <Table columnCount="4" rowCount="0">
                         <Column editable="false" title="Date" type="java.lang.String"/>
                         <Column editable="false" title="Refrence number" type="java.lang.String"/>
                         <Column editable="true" title="Description" type="java.lang.String"/>
@@ -485,8 +485,8 @@
                                               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Component id="jTextField1" min="-2" pref="346" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                              <Component id="jTextField1" min="-2" pref="349" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -494,11 +494,11 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="394" max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="184" max="-2" attributes="0"/>
+                              <Component id="amount" min="-2" pref="184" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="423" max="-2" attributes="0"/>
-                              <Component id="jButton4" min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="transferb" min="-2" pref="133" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="314" max="32767" attributes="0"/>
@@ -523,10 +523,10 @@
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="amount" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="transferb" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace pref="115" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -576,14 +576,14 @@
                 <Property name="text" type="java.lang.String" value="Ammount of transfer:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="amount">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="amountActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -604,7 +604,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="transferb">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="0" type="rgb"/>
@@ -615,7 +615,7 @@
                 <Property name="text" type="java.lang.String" value="Transfer"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferbActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -87,5 +87,34 @@ public class DataFile implements Serializable {
             }
             return false;
     }
+        public static List<Payments> readPaymentsFromFile(String filePath) throws IOException, ClassNotFoundException {
+        List<Payments> payments = new ArrayList<>();
+        try (FileInputStream f = new FileInputStream(filePath); ObjectInputStream obj = new ObjectInputStream(f)) {
+            while (true) {
+                try {
+                    Payments Payment = (Payments) obj.readObject();
+                    payments.add(Payment);
+                } catch (EOFException e) {
+                    obj.close();
+                    break;
+                }
+            }
+        }
+        return payments;
+        }
+         public static void writePaymentsToFile(String filePath, List<Payments> payments) throws IOException {
+        try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {
+            for (Payments payment : payments) {
+                obj.writeObject(payment); 
+           }
+            obj.close();
+        }
+        
+    }
+         public static void AddPayments(Payments c) throws IOException, ClassNotFoundException {
+        List<Payments>Payment=readPaymentsFromFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills");
+        Payment.add(c);
+        writePaymentsToFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills",Payment);
+    }
 }
 
