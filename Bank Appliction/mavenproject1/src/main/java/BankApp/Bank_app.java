@@ -649,6 +649,7 @@ public class Bank_app extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(204, 0, 0));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton7.setText("Help!");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -664,6 +665,7 @@ public class Bank_app extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dark Mode", "Light Mode" }));
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton2.setText(" change Password");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
