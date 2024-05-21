@@ -214,8 +214,8 @@ public class Bank_register extends javax.swing.JFrame {
        pass = T2.getText();
        id = T3.getText();
         try {
-            users = DataFile.readUserFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
-            c = DataFile.readCustomersFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+            users = DataFile.readUserFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
+            c = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
             System.out.print(users.size());
             for(int i=0; i<users.size();i++){
         if(id.equals(users.get(i).getId())) {flag1 = 1;JOptionPane.showMessageDialog(null, "This account already exists"); break;}
