@@ -18,7 +18,9 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
+import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +38,35 @@ public class Bank_app extends javax.swing.JFrame {
     public Bank_app(Customer t) {
         this.c = t;
         initComponents();
+        Name.setText(c.firstName+" "+c.secondName);
+        NetBalance.setText("Net balance: "+c.getMoney());
+        String[] names = new String[4];
+        for (int i = 0; i < 4; i++) {
+            names[i] = dashtable.getColumnName(i);
+        }
+        dashtable.setModel(new DefaultTableModel(null, names));
+
+        try {
+            File f = new File(PAYMENTS_FILE_PATH);
+            Scanner s = new Scanner(f);
+            for (int i=0; i<3; i++) {
+                String idd = s.next() + " " + s.next() + " " + s.next() + " " + s.next();
+
+                if (idd.equals(c.getId())) {
+                    String[] arr = new String[4];
+                    arr[0] = s.next();
+                    arr[1] = s.next();
+                    arr[2] = s.next();
+                    arr[3] = s.next();
+                    DefaultTableModel tb = (DefaultTableModel) dashtable.getModel();
+                    tb.addRow(arr);
+                } else {
+                    s.nextLine();
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
         a = 0;
         months = 0;
         result = 0;
@@ -83,6 +114,10 @@ public class Bank_app extends javax.swing.JFrame {
         settings = new javax.swing.JButton();
         taps = new javax.swing.JTabbedPane();
         dash_Panel = new javax.swing.JPanel();
+        NetBalance = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dashtable = new javax.swing.JTable();
         trans_Panel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transtable = new javax.swing.JTable();
@@ -285,22 +320,59 @@ public class Bank_app extends javax.swing.JFrame {
 
         dash_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
+        NetBalance.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NetBalance.setText("2");
+
+        Name.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Name.setText("1");
+
+        dashtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Date", "Refrence Number", "Description", "Balance"
+            }
+        ));
+        jScrollPane3.setViewportView(dashtable);
+
         javax.swing.GroupLayout dash_PanelLayout = new javax.swing.GroupLayout(dash_Panel);
         dash_Panel.setLayout(dash_PanelLayout);
         dash_PanelLayout.setHorizontalGroup(
             dash_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGroup(dash_PanelLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addComponent(NetBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91))
+            .addGroup(dash_PanelLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dash_PanelLayout.setVerticalGroup(
             dash_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGroup(dash_PanelLayout.createSequentialGroup()
+                .addGroup(dash_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dash_PanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dash_PanelLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(NetBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(111, 111, 111)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         taps.addTab("tab1", dash_Panel);
 
         trans_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
-        transtable.setBackground(new java.awt.Color(255, 255, 255));
         transtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -353,7 +425,7 @@ public class Bank_app extends javax.swing.JFrame {
         trans_Panel.setLayout(trans_PanelLayout);
         trans_PanelLayout.setHorizontalGroup(
             trans_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(trans_PanelLayout.createSequentialGroup()
                 .addGap(352, 352, 352)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,7 +436,7 @@ public class Bank_app extends javax.swing.JFrame {
             .addGroup(trans_PanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -385,7 +457,6 @@ public class Bank_app extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Recipient Accont:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -395,7 +466,6 @@ public class Bank_app extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Ammount of transfer:");
 
-        amount.setBackground(new java.awt.Color(255, 255, 255));
         amount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amountActionPerformed(evt);
@@ -405,7 +475,6 @@ public class Bank_app extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Recipient Accont:");
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -452,7 +521,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addGroup(transfer_PanelLayout.createSequentialGroup()
                         .addGap(423, 423, 423)
                         .addComponent(transferb, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         transfer_PanelLayout.setVerticalGroup(
             transfer_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +542,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73)
                 .addComponent(transferb, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         taps.addTab("tab3", transfer_Panel);
@@ -562,7 +631,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addGroup(loan_PanelLayout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loan_PanelLayout.setVerticalGroup(
             loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -586,7 +655,7 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         taps.addTab("tab4", loan_Panel);
@@ -597,11 +666,11 @@ public class Bank_app extends javax.swing.JFrame {
         wallets_Panel.setLayout(wallets_PanelLayout);
         wallets_PanelLayout.setHorizontalGroup(
             wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         wallets_PanelLayout.setVerticalGroup(
             wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         taps.addTab("tab5", wallets_Panel);
@@ -612,11 +681,11 @@ public class Bank_app extends javax.swing.JFrame {
         messages_Panel.setLayout(messages_PanelLayout);
         messages_PanelLayout.setHorizontalGroup(
             messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         messages_PanelLayout.setVerticalGroup(
             messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         taps.addTab("tab6", messages_Panel);
@@ -664,7 +733,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addGroup(services_PanelLayout.createSequentialGroup()
                         .addGap(365, 365, 365)
                         .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         services_PanelLayout.setVerticalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,7 +749,7 @@ public class Bank_app extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(100, 100, 100)
                 .addComponent(pay)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         taps.addTab("tab7", services_Panel);
@@ -763,7 +832,7 @@ public class Bank_app extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
             .addGroup(settings_PanelLayout.createSequentialGroup()
@@ -791,7 +860,7 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(settings_PanelLayout.createSequentialGroup()
                     .addGap(27, 27, 27)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(807, Short.MAX_VALUE)))
+                    .addContainerGap(717, Short.MAX_VALUE)))
         );
         settings_PanelLayout.setVerticalGroup(
             settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -816,7 +885,7 @@ public class Bank_app extends javax.swing.JFrame {
                         .addGroup(settings_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(new_pass2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jButton7)
@@ -825,7 +894,7 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(settings_PanelLayout.createSequentialGroup()
                     .addGap(177, 177, 177)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(491, Short.MAX_VALUE)))
+                    .addContainerGap(333, Short.MAX_VALUE)))
         );
 
         taps.addTab("tab8", settings_Panel);
@@ -880,6 +949,34 @@ public class Bank_app extends javax.swing.JFrame {
 
     private void dashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashActionPerformed
         taps.setSelectedIndex(0);
+        NetBalance.setText("Net balance: "+c.getMoney());
+        String[] names = new String[4];
+        for (int i = 0; i < 4; i++) {
+            names[i] = dashtable.getColumnName(i);
+        }
+        dashtable.setModel(new DefaultTableModel(null, names));
+
+        try {
+            File f = new File(PAYMENTS_FILE_PATH);
+            Scanner s = new Scanner(f);
+            for (int i=0; i<3; i++) {
+                String idd = s.next() + " " + s.next() + " " + s.next() + " " + s.next();
+
+                if (idd.equals(c.getId())) {
+                    String[] arr = new String[4];
+                    arr[0] = s.next();
+                    arr[1] = s.next();
+                    arr[2] = s.next();
+                    arr[3] = s.next();
+                    DefaultTableModel tb = (DefaultTableModel) dashtable.getModel();
+                    tb.addRow(arr);
+                } else {
+                    s.nextLine();
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_dashActionPerformed
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
@@ -1042,6 +1139,7 @@ public class Bank_app extends javax.swing.JFrame {
                     }
                 }
                 DataFile.writeCustomersToFile(CUSTOMER_FILE_PATH, l);
+                DataFile.writeCustomerToFile("temp.txt", c);
 
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(this, "File Not Found !", "ERROR 102", JOptionPane.ERROR_MESSAGE);
@@ -1210,12 +1308,15 @@ public class Bank_app extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Name;
+    private javax.swing.JLabel NetBalance;
     private javax.swing.JTextField amount;
     private javax.swing.JComboBox<String> amountcb;
     private javax.swing.JTextPane billnum;
     private javax.swing.JComboBox<String> combo;
     private javax.swing.JButton dash;
     private javax.swing.JPanel dash_Panel;
+    private javax.swing.JTable dashtable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1244,6 +1345,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
