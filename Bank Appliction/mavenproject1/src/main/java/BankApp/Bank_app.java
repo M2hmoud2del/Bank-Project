@@ -109,6 +109,11 @@ public class Bank_app extends javax.swing.JFrame {
         wallets_Panel = new javax.swing.JPanel();
         messages_Panel = new javax.swing.JPanel();
         services_Panel = new javax.swing.JPanel();
+        combo = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        billnum = new javax.swing.JTextPane();
+        pay = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
         settings_Panel = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -616,15 +621,64 @@ public class Bank_app extends javax.swing.JFrame {
 
         services_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
+        combo.setBackground(new java.awt.Color(0, 102, 102));
+        combo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water", "Electricity", "Gas", "Internet" }));
+        combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setViewportView(billnum);
+
+        pay.setBackground(new java.awt.Color(0, 102, 102));
+        pay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        pay.setText("Pay");
+        pay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setText("Enter Bill  number:");
+
         javax.swing.GroupLayout services_PanelLayout = new javax.swing.GroupLayout(services_Panel);
         services_Panel.setLayout(services_PanelLayout);
         services_PanelLayout.setHorizontalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, services_PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+            .addGroup(services_PanelLayout.createSequentialGroup()
+                .addGroup(services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(services_PanelLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel14)
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(services_PanelLayout.createSequentialGroup()
+                        .addGap(365, 365, 365)
+                        .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
         services_PanelLayout.setVerticalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGroup(services_PanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(services_PanelLayout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel14))
+                    .addGroup(services_PanelLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(100, 100, 100)
+                .addComponent(pay)
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         taps.addTab("tab7", services_Panel);
@@ -1074,9 +1128,55 @@ public class Bank_app extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_new_pass2ActionPerformed
 
+    private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboActionPerformed
+
+    private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
+        String water, elec, gas, net;
+        water = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Water.txt";
+        elec = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Elec.txt";
+        gas = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Gas.txt";
+        net = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Net.txt";
+        String file = "";
+        if (combo.getSelectedIndex() == 0) {
+            file = water;
+        }
+        if (combo.getSelectedIndex() == 1) {
+            file = elec;
+        }
+        if (combo.getSelectedIndex() == 2) {
+            file = gas;
+        }
+        if (combo.getSelectedIndex() == 3) {
+            file = net;
+        }
+
+        File b = new File(file);
+        double current =Double.parseDouble(c.getMoney());
+        Scanner s = null;
+        try {
+            s = new Scanner(b);
+            String n;
+            while (s.hasNext()) {
+            if (billnum.getText() == s.next()) {
+                String  amount;
+                amount = s.next();
+                current-=Double.parseDouble(amount);
+                c.setMoney(Double.toString(current));
+                //hoda y7tha fe el file bta3 customer
+            }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }//GEN-LAST:event_payActionPerformed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1106,6 +1206,8 @@ public class Bank_app extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
     private javax.swing.JComboBox<String> amountcb;
+    private javax.swing.JTextPane billnum;
+    private javax.swing.JComboBox<String> combo;
     private javax.swing.JButton dash;
     private javax.swing.JPanel dash_Panel;
     private javax.swing.JButton jButton1;
@@ -1120,6 +1222,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1134,6 +1237,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
@@ -1144,6 +1248,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JTextField new_pass;
     private javax.swing.JTextField new_pass2;
     private javax.swing.JTextField old_pass;
+    private javax.swing.JButton pay;
     private javax.swing.JButton services;
     private javax.swing.JPanel services_Panel;
     private javax.swing.JButton settings;
