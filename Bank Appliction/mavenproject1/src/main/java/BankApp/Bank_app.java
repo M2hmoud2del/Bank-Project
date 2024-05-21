@@ -754,6 +754,10 @@ public class Bank_app extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        File f = new File("temp.txt");
+        if (f.exists()) {
+            f.delete();
+        }
         dispose();
         try {
             Thread.sleep(500);
