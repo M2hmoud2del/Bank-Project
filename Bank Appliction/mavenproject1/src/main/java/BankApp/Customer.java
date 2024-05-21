@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Random;
 public class Customer implements Serializable {
     int cvv;
-    String firstName,secondName,startedDate,expiredDate,cardNumber,password="123456789",money="0$";
+    String firstName,secondName,startedDate,expiredDate,cardNumber,password="0000",money="0$";
 
 //    public Customer(int cvv, String firstName, String secondName, String startedDate, String expiredDate, String cardNumber,String money) {
 //        this.cvv = cvv;
