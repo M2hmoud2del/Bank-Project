@@ -10,9 +10,11 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -842,21 +844,24 @@ public class Bank_app extends javax.swing.JFrame {
         taps.setSelectedIndex(1);
 
         try {
-            List<Payments> payment = DataFile.readPaymentsFromFile(PAYMENTS_FILE_PATH);
-            for (Payments i : payment) {
-                if (i.getCardnum().equals(c.getId())) {
-                    String[] s = new String[4];
-                    s[0] = i.getDate();
-                    s[1] = i.getRefrence();
-                    s[2] = i.getDescription();
-                    s[3] = Double.toString(i.getBill());
+            File f = new File(PAYMENTS_FILE_PATH);
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                String idd = s.next() + " " + s.next() + " " + s.next() + " " + s.next();
+
+                if (idd.equals(c.getId())) {
+                    String[] arr = new String[4];
+                    arr[0] = s.next();
+                    arr[1] = s.next();
+                    arr[2] = s.next();
+                    arr[3] = s.next();
                     DefaultTableModel tb = (DefaultTableModel) transtable.getModel();
-                    tb.addRow(s);
+                    tb.addRow(arr);
+                } else {
+                    s.nextLine();
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
             Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_transActionPerformed
@@ -1047,7 +1052,7 @@ public class Bank_app extends javax.swing.JFrame {
             }
 
             ZonedDateTime now = ZonedDateTime.now();
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             String formattedDateTime = now.format(dateTimeFormatter);
             Random r = new Random();
@@ -1056,10 +1061,11 @@ public class Bank_app extends javax.swing.JFrame {
             int randomEightDigitNumber = r.nextInt((max - min) + 1) + min;
             Payments p = new Payments(formattedDateTime, Integer.toString(randomEightDigitNumber), "Transaction", c.getId(), Double.parseDouble(amount.getText()));
             try {
-                DataFile.addPayment(p, PAYMENTS_FILE_PATH);
+                FileWriter f = new FileWriter(PAYMENTS_FILE_PATH,true);
+                PrintWriter pp = new PrintWriter(f);
+                pp.println(c.getId() + " " + formattedDateTime+" " + randomEightDigitNumber + " " + "Transfer" + " " + transferammount);
+               pp.close();
             } catch (IOException ex) {
-                Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -1153,30 +1159,30 @@ public class Bank_app extends javax.swing.JFrame {
         }
 
         File b = new File(file);
-        double current =Double.parseDouble(c.getMoney());
+        double current = Double.parseDouble(c.getMoney());
         Scanner s = null;
         try {
             s = new Scanner(b);
             String n;
             while (s.hasNext()) {
-            if (billnum.getText() == s.next()) {
-                String  amount;
-                amount = s.next();
-                current-=Double.parseDouble(amount);
-                c.setMoney(Double.toString(current));
-                //hoda y7tha fe el file bta3 customer
-            }
+                if (billnum.getText() == s.next()) {
+                    String amount;
+                    amount = s.next();
+                    current -= Double.parseDouble(amount);
+                    c.setMoney(Double.toString(current));
+                    //hoda y7tha fe el file bta3 customer
+                }
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_payActionPerformed
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
