@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 public class Bank_register extends javax.swing.JFrame {
     List<User> users = new ArrayList<>();
     List<Customer> c = new ArrayList<>();
+    Customer cu;
     User u;
     Bank_Login bl;
     Bank_app client;
@@ -224,7 +225,7 @@ public class Bank_register extends javax.swing.JFrame {
             for(int i=0; i<c.size(); i++){
             if(id.equals(c.get(i).getId())) {
            u = new User(name, pass, id, false);
-           
+           cu = c.get(i);
            flag = 1;
            break;
            }
@@ -249,7 +250,7 @@ public class Bank_register extends javax.swing.JFrame {
                     Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-       client = new Bank_app(id);
+       client = new Bank_app(cu);
             client.setVisible(true);
             this.setVisible(false);
        }
@@ -257,7 +258,13 @@ public class Bank_register extends javax.swing.JFrame {
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        bl = new Bank_Login();
+        try {
+            bl = new Bank_Login();
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+        }
         bl.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_B2ActionPerformed

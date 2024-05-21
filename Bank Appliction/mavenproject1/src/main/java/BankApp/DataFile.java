@@ -132,5 +132,14 @@ public class DataFile implements Serializable {
         
          return c;
          }
+        public static void writeCustomerToFile(String filePath, Customer c) throws IOException {
+        try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {
+            
+                obj.writeObject(c); 
+           
+            obj.close();
+        }
+        
+    }
 }
 

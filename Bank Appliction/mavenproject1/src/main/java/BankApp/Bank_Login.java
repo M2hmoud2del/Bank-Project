@@ -22,6 +22,7 @@ public class Bank_Login extends javax.swing.JFrame {
     Customer c;
     File temp = new File("temp.txt");
     List<User> users = new ArrayList<>();
+    List<Customer> cu = new ArrayList<>();
     Bank_app client;
     AdmininsratorFrame ad;
     Bank_register br;
@@ -30,8 +31,8 @@ public class Bank_Login extends javax.swing.JFrame {
      * Creates new form Bank_Login
      */
     public Bank_Login() throws IOException, ClassNotFoundException {
-        if(temp.length()!=0){
-        c = df.readCustomerFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+        if(temp.exists()){
+        c = df.readCustomerFromFile("temp.txt");
         client = new Bank_app(c);
             client.setVisible(true);
             this.setVisible(false);
@@ -188,7 +189,21 @@ public class Bank_Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You have entered wrong password or username.");
             }else{
                 if(!admin){
-            client = new Bank_app(id);
+                    try {
+                        cu = DataFile.readCustomersFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                        for(int i=0; i<cu.size(); i++){
+                        if(id.equals(cu.get(i).getId())){
+                        c = cu.get(i);
+                        temp.createNewFile();
+                        DataFile.writeCustomerToFile("temp.txt", c);
+                        }
+                            }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            client = new Bank_app(c);
             client.setVisible(true);
             this.setVisible(false);
                 }else{
@@ -238,7 +253,13 @@ public class Bank_Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bank_Login().setVisible(true);
+                try {
+                    new Bank_Login().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Bank_Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
