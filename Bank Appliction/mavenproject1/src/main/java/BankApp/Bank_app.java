@@ -70,6 +70,8 @@ public class Bank_app extends javax.swing.JFrame {
         dash_Panel = new javax.swing.JPanel();
         trans_Panel = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         transfer_Panel = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -263,7 +265,7 @@ public class Bank_app extends javax.swing.JFrame {
         );
         dash_PanelLayout.setVerticalGroup(
             dash_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         taps.addTab("tab1", dash_Panel);
@@ -279,21 +281,37 @@ public class Bank_app extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout trans_PanelLayout = new javax.swing.GroupLayout(trans_Panel);
         trans_Panel.setLayout(trans_PanelLayout);
         trans_PanelLayout.setHorizontalGroup(
             trans_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(trans_PanelLayout.createSequentialGroup()
-                .addGap(241, 241, 241)
+            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trans_PanelLayout.createSequentialGroup()
+                .addContainerGap(291, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(227, 227, 227))
         );
         trans_PanelLayout.setVerticalGroup(
             trans_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(trans_PanelLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(35, 35, 35)
                 .addComponent(jButton2)
-                .addContainerGap(432, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         taps.addTab("tab2", trans_Panel);
@@ -514,7 +532,7 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(loan_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         taps.addTab("tab4", loan_Panel);
@@ -529,7 +547,7 @@ public class Bank_app extends javax.swing.JFrame {
         );
         wallets_PanelLayout.setVerticalGroup(
             wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         taps.addTab("tab5", wallets_Panel);
@@ -544,7 +562,7 @@ public class Bank_app extends javax.swing.JFrame {
         );
         messages_PanelLayout.setVerticalGroup(
             messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         taps.addTab("tab6", messages_Panel);
@@ -559,7 +577,7 @@ public class Bank_app extends javax.swing.JFrame {
         );
         services_PanelLayout.setVerticalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         taps.addTab("tab7", services_Panel);
@@ -636,12 +654,12 @@ public class Bank_app extends javax.swing.JFrame {
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         taps.addTab("tab8", settings_Panel);
 
-        getContentPane().add(taps, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 760, 570));
+        getContentPane().add(taps, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 760, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -880,7 +898,9 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
