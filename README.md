@@ -1,5 +1,5 @@
 Abdo ==> Dashboard , Login                                                     
-Khaled ==> My Wallets(Mahmoud,Khaled) , Loan                                                    
+Khaled ==> Loan ,Settings                                                
 Youssef Ezzat ==> Transction , Transfer (:                                              
 Youssef Osama ==> Messages(Mahmoud ,Osama) , Local Services                                           
-Mahmoud==> Settings,Adminstrator Panel,DataFile
+Mahmoud==> Adminstrator Frame,DataFile, Customer Class
