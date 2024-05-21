@@ -760,7 +760,13 @@ public class Bank_app extends javax.swing.JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        new Bank_Login().show();
+        try {
+            new Bank_Login().show();
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
