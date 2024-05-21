@@ -6,6 +6,7 @@ package BankApp;
 
 import static BankApp.DataFile.readCustomersFromFile;
 import java.awt.Color;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -638,6 +639,8 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+         File f=new File("temp.txt");
+        if(f.exists())f.delete();
         dispose();
         try {
             Thread.sleep(500);
