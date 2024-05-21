@@ -25,6 +25,10 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     /**
      * Creates new form AdmininsratorFrame
      */
+    private static final String CUSTOMER_FILE_PATH = Path.getCustomer();
+    private static final String PAYMENTS_FILE_PATH = Path.getPayment();
+    private static final String USER_FILE_PATH = Path.getUser();
+
     public AdmininsratorFrame() {
         initComponents();
         customersDetails.setBackground(new Color(13, 117, 16));
@@ -639,8 +643,10 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-         File f=new File("temp.txt");
-        if(f.exists())f.delete();
+        File f = new File("temp.txt");
+        if (f.exists()) {
+            f.delete();
+        }
         dispose();
         try {
             Thread.sleep(500);
@@ -694,7 +700,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
     private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
         ClearActionPerformed(evt);
         try {
-            List<Customer> l = readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+            List<Customer> l = readCustomersFromFile(CUSTOMER_FILE_PATH);
             for (Customer i : l) {
                 String[] s = new String[7];
                 s[0] = i.getFirstName() + " " + i.getSecondName();
@@ -719,7 +725,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
             c.setStartedDate(start.getText());
             c.setPassword(Pass.getText());
             try {
-                List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                List<Customer> l = DataFile.readCustomersFromFile(CUSTOMER_FILE_PATH);
                 if (!l.contains(c)) {
                     for (int i = 0; i < l.size(); i++) {
                         Customer existingCustomer = l.get(i);
@@ -728,7 +734,7 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
                             break;
                         }
                     }
-                    DataFile.writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt", l);
+                    DataFile.writeCustomersToFile(CUSTOMER_FILE_PATH, l);
                     showActionPerformed(evt);
                 } else {
 
@@ -808,13 +814,13 @@ public class AdmininsratorFrame extends javax.swing.JFrame {
         String id = idLabel.getText();
         if (!id.trim().equals("")) {
             try {
-                List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                List<Customer> l = DataFile.readCustomersFromFile(CUSTOMER_FILE_PATH);
                 boolean isExist = false;
                 for (Customer i : l) {
                     if (i.getId().equals(id)) {
                         isExist = true;
                         l.remove(i);
-                        DataFile.writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt", l);
+                        DataFile.writeCustomersToFile(CUSTOMER_FILE_PATH, l);
                         break;
                     }
                 }

@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataFile implements Serializable {
-
+    private static final String CUSTOMER_FILE_PATH = Path.getCustomer();
+    private static final String PAYMENTS_FILE_PATH = Path.getPayment();
+    private static final String USER_FILE_PATH = Path.getUser();
+    
     public static void AddCustomer(Customer c) throws IOException, ClassNotFoundException {
-        List<Customer>customers=readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+        List<Customer>customers=readCustomersFromFile(CUSTOMER_FILE_PATH);
         customers.add(c);
-        writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt",customers);
+        writeCustomersToFile(CUSTOMER_FILE_PATH,customers);
     }
     public static boolean RemoveCustomer(String filePath,String id) throws IOException, ClassNotFoundException {
         List<Customer> customers = readCustomersFromFile(filePath);
@@ -57,9 +60,9 @@ public class DataFile implements Serializable {
         return Users;
     }
             public static void AddUser(User u) throws IOException, ClassNotFoundException {
-        List<User>users=readUserFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
+        List<User>users=readUserFromFile(USER_FILE_PATH);
         users.add(u);
-        writeUsersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt",users);
+        writeUsersToFile(USER_FILE_PATH,users);
     }
         public static void writeUsersToFile(String filePath, List<User> users) throws IOException {
         try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {

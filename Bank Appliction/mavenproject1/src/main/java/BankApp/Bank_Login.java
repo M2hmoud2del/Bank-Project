@@ -21,9 +21,9 @@ import javax.swing.JOptionPane;
  */
 public class Bank_Login extends javax.swing.JFrame {
 
-    private static final String CUSTOMER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt";
-    private static final String PAYMENTS_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
-
+    private static final String CUSTOMER_FILE_PATH = Path.getCustomer();
+    private static final String PAYMENTS_FILE_PATH = Path.getPayment();
+    private static final String USER_FILE_PATH = Path.getUser();
     Customer c;
     File temp = new File("temp.txt");
     List<User> users = new ArrayList<>();
@@ -173,7 +173,7 @@ public class Bank_Login extends javax.swing.JFrame {
         boolean admin = false;
         try {
 
-            users = DataFile.readUserFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
+            users = DataFile.readUserFromFile(USER_FILE_PATH);
 
             for (int i = 0; i < users.size(); i++) {
                 if (name.equals(users.get(i).getUsername()) && pass.equals(users.get(i).getPass())) {
@@ -196,7 +196,7 @@ public class Bank_Login extends javax.swing.JFrame {
             } else {
                 if (!admin) {
                     try {
-                        cu = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                        cu = DataFile.readCustomersFromFile(CUSTOMER_FILE_PATH);
                         for (int i = 0; i < cu.size(); i++) {
                             if (id.equals(cu.get(i).getId())) {
                                 c = cu.get(i);

@@ -23,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Bank_app extends javax.swing.JFrame {
 
-    private static final String CUSTOMER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt";
-    private static final String PAYMENTS_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
- private static final String USER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
+    private static final String CUSTOMER_FILE_PATH = Path.getCustomer();
+    private static final String PAYMENTS_FILE_PATH = Path.getPayment();
+    private static final String USER_FILE_PATH = Path.getUser();
 
     private double a, Housingloan, Personalloan, vechileloan, result;
     private int months;
@@ -788,7 +788,7 @@ public class Bank_app extends javax.swing.JFrame {
         taps.setSelectedIndex(1);
 
         try {
-            List<Payments> payment = DataFile.readPaymentsFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt");
+            List<Payments> payment = DataFile.readPaymentsFromFile(PAYMENTS_FILE_PATH);
             for (Payments i : payment) {
                 if (i.getCardnum().equals(c.getId())) {
                     String[] s = new String[4];
@@ -969,12 +969,12 @@ public class Bank_app extends javax.swing.JFrame {
         double transferammount = Double.parseDouble(amount.getText());
         double currentmony = Double.parseDouble(c.getMoney());
         if (transferammount > currentmony) {
-            JOptionPane.showMessageDialog(null, "not enough amount\n plesse try again when yous have enough monye you poor");
+            JOptionPane.showMessageDialog(null, "not enough amount\n plesse try again when yous have enough money you poor");
         } else {
             currentmony -= transferammount;
             c.setMoney(Double.toString(currentmony));
             try {
-                List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                List<Customer> l = DataFile.readCustomersFromFile(CUSTOMER_FILE_PATH);
                 for (int i = 0; i < l.size(); i++) {
                     Customer existingCustomer = l.get(i);
                     if ((existingCustomer.getFirstName() + existingCustomer.getSecondName()).equals(c.getFirstName() + c.getSecondName())) {
@@ -982,7 +982,7 @@ public class Bank_app extends javax.swing.JFrame {
                         break;
                     }
                 }
-                DataFile.writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt", l);
+                DataFile.writeCustomersToFile(CUSTOMER_FILE_PATH, l);
 
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(this, "File Not Found !", "ERROR 102", JOptionPane.ERROR_MESSAGE);
@@ -1002,7 +1002,7 @@ public class Bank_app extends javax.swing.JFrame {
             int randomEightDigitNumber = r.nextInt((max - min) + 1) + min;
             Payments p = new Payments(formattedDateTime, Integer.toString(randomEightDigitNumber), "Transaction", c.getId(), Double.parseDouble(amount.getText()));
             try {
-                DataFile.addPayment(p, "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt");
+                DataFile.addPayment(p, PAYMENTS_FILE_PATH);
             } catch (IOException ex) {
                 Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -1029,42 +1029,41 @@ public class Bank_app extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-       
+
         try {
-           List<User> l = DataFile.readUserFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
-         
-                    for (int i = 0; i < l.size(); i++) {
-                        User existingUser = l.get(i);
-                        if ((existingUser.getId().equals(c.getId()))) {
-                            if(old_pass.getText().equals(existingUser.getPass())){
-                                if(new_pass.getText().equals(new_pass2.getText())){
-                            existingUser.setPass(new_pass.getText()); 
+            List<User> l = DataFile.readUserFromFile(USER_FILE_PATH);
+
+            for (int i = 0; i < l.size(); i++) {
+                User existingUser = l.get(i);
+                if ((existingUser.getId().equals(c.getId()))) {
+                    if (old_pass.getText().equals(existingUser.getPass())) {
+                        if (new_pass.getText().equals(new_pass2.getText())) {
+                            existingUser.setPass(new_pass.getText());
                             l.set(i, existingUser);
                             break;
-                            
-                            }
-                                else{ JOptionPane.showMessageDialog(null,"Password dismatch stubid");
-                               break; }
-                            }else{
-                                 JOptionPane.showMessageDialog(null,"Wrong Password stubid");
-                            }
-                            
-                            
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Password dismatch stubid");
                             break;
-                        
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong Password stubid");
                     }
-                        
-        }
-        DataFile.writeUsersToFile(USER_FILE_PATH, l);
-        
+
+                    break;
+
+                }
+
+            }
+            DataFile.writeUsersToFile(USER_FILE_PATH, l);
+
         } catch (IOException ex) {
             Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void old_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_old_passActionPerformed
