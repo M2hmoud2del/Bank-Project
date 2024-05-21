@@ -8,41 +8,46 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 
 import javax.swing.JOptionPane;
- 
+
 public class Bank_app extends javax.swing.JFrame {
+
     String id;
-    private double a,Housingloan,Personalloan,vechileloan, result;
+    private double a, Housingloan, Personalloan, vechileloan, result;
     private int months;
-  Customer c;
- 
+    Customer c;
+
+    
+       
+
     public Bank_app(String id) {
         this.id = id;
         initComponents();
-        
-  
-        
+
     }
+
     public Bank_app() {
         this.id = null;
         initComponents();
-               
-            a=0;
-            months=0;
-         result=0;
-    
-         Housingloan=0;
-       Personalloan=0;
-         vechileloan=0;
+
+        a = 0;
+        months = 0;
+        result = 0;
+
+        Housingloan = 0;
+        Personalloan = 0;
+        vechileloan = 0;
         setResizable(false);
-       
-        
+         
+
     }
 
     /**
@@ -81,7 +86,7 @@ public class Bank_app extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        transferb = new javax.swing.JButton();
         loan_Panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -389,12 +394,12 @@ public class Bank_app extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 102));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setText("Transfer");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        transferb.setBackground(new java.awt.Color(0, 102, 102));
+        transferb.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        transferb.setText("Transfer");
+        transferb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                transferbActionPerformed(evt);
             }
         });
 
@@ -421,14 +426,14 @@ public class Bank_app extends javax.swing.JFrame {
                                         .addGap(92, 92, 92)
                                         .addComponent(jButton3))
                                     .addGroup(transfer_PanelLayout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(transfer_PanelLayout.createSequentialGroup()
                         .addGap(394, 394, 394)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(transfer_PanelLayout.createSequentialGroup()
                         .addGap(423, 423, 423)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(transferb, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(314, Short.MAX_VALUE))
         );
         transfer_PanelLayout.setVerticalGroup(
@@ -449,7 +454,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transferb, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
@@ -737,8 +742,7 @@ public class Bank_app extends javax.swing.JFrame {
         JColorChooser colorChooser = new JColorChooser();
         String x;
         x = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
-        if(x.equals("Dark Mode"))
-        {
+        if (x.equals("Dark Mode")) {
             settings_Panel.setBackground(Color.DARK_GRAY);
             services_Panel.setBackground(Color.DARK_GRAY);
             messages_Panel.setBackground(Color.DARK_GRAY);
@@ -746,14 +750,14 @@ public class Bank_app extends javax.swing.JFrame {
             transfer_Panel.setBackground(Color.DARK_GRAY);
             trans_Panel.setBackground(Color.DARK_GRAY);
             dash_Panel.setBackground(Color.DARK_GRAY);
-            settings.setBackground(Color.BLACK );
+            settings.setBackground(Color.BLACK);
             services.setBackground(Color.BLACK);
             messages.setBackground(Color.BLACK);
             transfer.setBackground(Color.BLACK);
             trans.setBackground(Color.BLACK);
             dash.setBackground(Color.BLACK);
             loan.setBackground(Color.BLACK);
-            jPanel1.setBackground(Color.WHITE);
+            jPanel1.setBackground(new Color(0,0,0));
             loan.setForeground(Color.WHITE);
             settings.setForeground(Color.WHITE);
             messages.setForeground(Color.WHITE);
@@ -763,8 +767,7 @@ public class Bank_app extends javax.swing.JFrame {
             transfer.setForeground(Color.WHITE);
 
         }
-        if(x.equals("Light Mode"))
-        {
+        if (x.equals("Light Mode")) {
             settings_Panel.setBackground(Color.LIGHT_GRAY);
             services_Panel.setBackground(Color.LIGHT_GRAY);
             messages_Panel.setBackground(Color.LIGHT_GRAY);
@@ -772,7 +775,7 @@ public class Bank_app extends javax.swing.JFrame {
             transfer_Panel.setBackground(Color.LIGHT_GRAY);
             trans_Panel.setBackground(Color.LIGHT_GRAY);
             dash_Panel.setBackground(Color.LIGHT_GRAY);
-            settings.setBackground(Color.green );
+            settings.setBackground(Color.green);
             services.setBackground(Color.green);
             messages.setBackground(Color.green);
             transfer.setBackground(Color.green);
@@ -803,42 +806,40 @@ public class Bank_app extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        a=Integer.parseInt(amountcb.getItemAt(amountcb.getSelectedIndex()));
-        months=Integer.parseInt(tf.getText());
-        if(!(0<months))
-        {
+        a = Integer.parseInt(amountcb.getItemAt(amountcb.getSelectedIndex()));
+        months = Integer.parseInt(tf.getText());
+        if (!(0 < months)) {
             JOptionPane.showMessageDialog(this, "you can't Enter negative Month");
 
         }
 
-        String tybe =tybecb.getItemAt(tybecb.getSelectedIndex());
+        String tybe = tybecb.getItemAt(tybecb.getSelectedIndex());
 
-        Housingloan=0.15;
-        Personalloan=0.15;
-        vechileloan=0.1;
+        Housingloan = 0.15;
+        Personalloan = 0.15;
+        vechileloan = 0.1;
 
         switch (tybe) {
             case "Housing" -> {
 
-                result= (a*months*Housingloan)+a;
+                result = (a * months * Housingloan) + a;
 
             }
             case "Personal" -> {
-                result= (a*months*Personalloan)+a;
+                result = (a * months * Personalloan) + a;
             }
             case "Vechile" -> {
-                result=(a*months*vechileloan)+a;
+                result = (a * months * vechileloan) + a;
             }
             default -> {
             }
         }
 
-        if(a>Double.parseDouble(c.getMoney())) {
+        if (a > Double.parseDouble(c.getMoney())) {
 
             JOptionPane.showMessageDialog(this, "Your Balance isn't Enough");
 
-        }
-        else{
+        } else {
 
             total.setText(Double.toString(result));
 
@@ -847,9 +848,17 @@ public class Bank_app extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void transferbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferbActionPerformed
+        Payments p=new Payments();
+        try {
+            DataFile.AddPayments(p);
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }//GEN-LAST:event_transferbActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -887,7 +896,7 @@ public class Bank_app extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Bank_app.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -902,7 +911,6 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel dash_Panel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -943,6 +951,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel trans_Panel;
     private javax.swing.JButton transfer;
     private javax.swing.JPanel transfer_Panel;
+    private javax.swing.JButton transferb;
     private javax.swing.JComboBox<String> tybecb;
     private javax.swing.JPanel wallets_Panel;
     // End of variables declaration//GEN-END:variables

@@ -156,7 +156,7 @@ public class Bank_Login extends javax.swing.JFrame {
         pass = T2.getText();
         boolean admin=false;
         try {
-            users = DataFile.readUserFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
+            users = DataFile.readUserFromFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers");
             for(int i=0; i<users.size(); i++){
             if(name.equals(users.get(i).getUsername()) && pass.equals(users.get(i).getPass())){
                 flag =1;
