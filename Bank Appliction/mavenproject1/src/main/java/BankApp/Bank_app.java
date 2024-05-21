@@ -4,6 +4,8 @@
  */
 package BankApp;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,25 +19,28 @@ import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Bank_app extends javax.swing.JFrame {
 
-    String id;
     private double a, Housingloan, Personalloan, vechileloan, result;
     private int months;
     Customer c;
 
-    
-       
-
-    public Bank_app(String id) {
-        this.id = id;
+    public Bank_app(Customer t) {
+        this.c = t;
         initComponents();
-
+        a = 0;
+        months = 0;
+        result = 0;
+        Housingloan = 0;
+        Personalloan = 0;
+        vechileloan = 0;
+        setResizable(false);
     }
 
     public Bank_app() {
-        this.id = null;
+
         initComponents();
 
         a = 0;
@@ -46,7 +51,6 @@ public class Bank_app extends javax.swing.JFrame {
         Personalloan = 0;
         vechileloan = 0;
         setResizable(false);
-         
 
     }
 
@@ -75,7 +79,7 @@ public class Bank_app extends javax.swing.JFrame {
         dash_Panel = new javax.swing.JPanel();
         trans_Panel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        transtable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         transfer_Panel = new javax.swing.JPanel();
@@ -83,7 +87,7 @@ public class Bank_app extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        amount = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         transferb = new javax.swing.JButton();
@@ -279,13 +283,10 @@ public class Bank_app extends javax.swing.JFrame {
 
         trans_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        transtable.setBackground(new java.awt.Color(255, 255, 255));
+        transtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Date", "Refrence number", "Description", "Balance"
@@ -306,7 +307,7 @@ public class Bank_app extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(transtable);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -346,8 +347,8 @@ public class Bank_app extends javax.swing.JFrame {
             .addGroup(trans_PanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         taps.addTab("tab2", trans_Panel);
@@ -377,10 +378,10 @@ public class Bank_app extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Ammount of transfer:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        amount.setBackground(new java.awt.Color(255, 255, 255));
+        amount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                amountActionPerformed(evt);
             }
         });
 
@@ -430,7 +431,7 @@ public class Bank_app extends javax.swing.JFrame {
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(transfer_PanelLayout.createSequentialGroup()
                         .addGap(394, 394, 394)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(transfer_PanelLayout.createSequentialGroup()
                         .addGap(423, 423, 423)
                         .addComponent(transferb, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -452,7 +453,7 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGap(74, 74, 74)
                 .addGroup(transfer_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73)
                 .addComponent(transferb, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
@@ -697,7 +698,31 @@ public class Bank_app extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void transActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transActionPerformed
+        String[] names = new String[4];
+        for (int i = 0; i < 4; i++) {
+            names[i] = transtable.getColumnName(i);
+        }
+        transtable.setModel(new DefaultTableModel(null, names));
         taps.setSelectedIndex(1);
+
+        try {
+            List<Payments> payment = DataFile.readPaymentsFromFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt");
+            for (Payments i : payment) {
+                if (i.getCardnum().equals(c.getId())) {
+                    String[] s = new String[4];
+                    s[0] = i.getDate();
+                    s[1] = i.getRefrence();
+                    s[2] = i.getDescription();
+                    s[3] = Double.toString(i.getBill());
+                    DefaultTableModel tb = (DefaultTableModel) transtable.getModel();
+                    tb.addRow(s);
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_transActionPerformed
 
     private void loanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loanActionPerformed
@@ -757,7 +782,7 @@ public class Bank_app extends javax.swing.JFrame {
             trans.setBackground(Color.BLACK);
             dash.setBackground(Color.BLACK);
             loan.setBackground(Color.BLACK);
-            jPanel1.setBackground(new Color(0,0,0));
+            jPanel1.setBackground(new Color(0, 0, 0));
             loan.setForeground(Color.WHITE);
             settings.setForeground(Color.WHITE);
             messages.setForeground(Color.WHITE);
@@ -849,24 +874,40 @@ public class Bank_app extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void transferbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferbActionPerformed
-        Payments p=new Payments();
-        try {
-            DataFile.AddPayments(p);
-        } catch (IOException ex) {
-            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        double transferammount = Double.parseDouble(amount.getText());
+        double currentmony = Double.parseDouble(c.getMoney());
+        if (transferammount < currentmony) {
+            JOptionPane.showMessageDialog(null, "not enough amount\n plesse try again when yous have enough monye you poor");
+        } else {
+            currentmony -= transferammount;
+            c.setMoney(Double.toString(currentmony));
+            ZonedDateTime now = ZonedDateTime.now();
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+
+            String formattedDateTime = now.format(dateTimeFormatter);
+            Random r = new Random();
+            int min = 10000000;
+            int max = 99999999;
+            int randomEightDigitNumber = r.nextInt((max - min) + 1) + min;
+            Payments p = new Payments(formattedDateTime, Integer.toString(randomEightDigitNumber), "Transaction", c.getId(), Double.parseDouble(amount.getText()));
+            try {
+                DataFile.AddPayments(p);
+            } catch (IOException ex) {
+                Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    
+
     }//GEN-LAST:event_transferbActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_amountActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -906,6 +947,7 @@ public class Bank_app extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amount;
     private javax.swing.JComboBox<String> amountcb;
     private javax.swing.JButton dash;
     private javax.swing.JPanel dash_Panel;
@@ -932,9 +974,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton loan;
     private javax.swing.JPanel loan_Panel;
@@ -952,6 +992,7 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JButton transfer;
     private javax.swing.JPanel transfer_Panel;
     private javax.swing.JButton transferb;
+    private javax.swing.JTable transtable;
     private javax.swing.JComboBox<String> tybecb;
     private javax.swing.JPanel wallets_Panel;
     // End of variables declaration//GEN-END:variables
