@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,19 +22,12 @@ import javax.swing.JOptionPane;
  * @author Abdelrahman
  */
 public class Bank_register extends javax.swing.JFrame {
-    File f = new File("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
-    File g = new File("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
-    FileInputStream fi;
-    FileInputStream fi1;
-    FileOutputStream fo;
-    ArrayList<User> users = new ArrayList<>();
-    ArrayList<Customer> c = new ArrayList<>();
-    ObjectInputStream ois;
-    ObjectInputStream ois1;
-    ObjectOutputStream oos;
+    List<User> users = new ArrayList<>();
+    List<Customer> c = new ArrayList<>();
     User u;
     Bank_Login bl;
     Bank_app client;
+    
 
     /**
      * Creates new form Bank_register
@@ -214,63 +208,52 @@ public class Bank_register extends javax.swing.JFrame {
     }//GEN-LAST:event_T3ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-       String name = null, pass = null, id = null;
-       int flag = 0, flag1=0;
+       String name , pass , id ;
+       int flag=0, flag1=0;
+       name = T1.getText();
+       pass = T2.getText();
+       id = T3.getText();
         try {
-            fo = new FileOutputStream(f);
-            fi1 = new FileInputStream(f);
-            ois1 = new ObjectInputStream(fi1);
-            fi = new FileInputStream(g);
-            ois = new ObjectInputStream(fi);
-            oos = new ObjectOutputStream(fo);
-            c = (ArrayList<Customer>)ois.readObject();
-            users = (ArrayList<User>)ois1.readObject();
-        name = T1.getText();
-        pass = T2.getText();
-        id = T3.getText();
-        for(int i=0; i<users.size();i++){
+            users = DataFile.readUserFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
+            c = DataFile.readCustomersFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+            System.out.print(users.size());
+            for(int i=0; i<users.size();i++){
         if(id.equals(users.get(i).getId())) {flag1 = 1;JOptionPane.showMessageDialog(null, "This account already exists"); break;}
         }
-        if(flag==0){
-            for(int i=0; i<c.size();i++ ){
-           if(id.equals(c.get(i).getId())) {
+            if(flag1==0){
+            for(int i=0; i<c.size(); i++){
+            if(id.equals(c.get(i).getId())) {
            u = new User(name, pass, id, false);
            
            flag = 1;
            break;
            }
-       }
-        }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
         } catch (IOException ex) {
             Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
         }
-       finally{if(flag1 == 0){
-            if(flag == 0)
-               JOptionPane.showMessageDialog(null, "You have entered wrong Id.");
+        finally{
+         System.out.print(users.size());
+            if(flag1 == 0){
+            if(flag == 0){
+               JOptionPane.showMessageDialog(null, "You have entered wrong Id.");}
                else{
-                users.add(u);
                 try {
-                    oos.writeObject(users);
+                    DataFile.AddUser(u);
                 } catch (IOException ex) {
                     Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
        client = new Bank_app(id);
             client.setVisible(true);
             this.setVisible(false);
        }
                }}
-        try {
-               ois1.close();
-               ois.close();
-               oos.close();
-           } catch (IOException ex) {
-               Logger.getLogger(Bank_register.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
@@ -304,6 +287,12 @@ public class Bank_register extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Bank_register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

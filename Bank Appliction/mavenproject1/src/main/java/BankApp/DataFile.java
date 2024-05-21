@@ -41,7 +41,36 @@ public class DataFile implements Serializable {
         }
         return customers;
     }
+        public static List<User> readUserFromFile(String filePath) throws IOException, ClassNotFoundException {
+        List<User> Users = new ArrayList<>();
+        try (FileInputStream f = new FileInputStream(filePath); ObjectInputStream obj = new ObjectInputStream(f)) {
+            while (true) {
+                try {
+                    User u = (User) obj.readObject();
+                    Users.add(u);
+                } catch (EOFException e) {
+                    obj.close();
+                    break;
+                }
+            }
+        }
+        return Users;
+    }
+            public static void AddUser(User u) throws IOException, ClassNotFoundException {
+        List<User>users=readUserFromFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt");
+        users.add(u);
+        writeUsersToFile("C:\\Users\\DELL\\OneDrive\\Documents\\NetBeansProjects\\Bank-Project-main\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Users\\User.txt",users);
+    }
+        public static void writeUsersToFile(String filePath, List<User> users) throws IOException {
+        try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {
+            for (User u : users) {
+                obj.writeObject(u); 
+           }
+            obj.close();
+        }
+        }
 
+    
     public static void writeCustomersToFile(String filePath, List<Customer> customers) throws IOException {
         try (FileOutputStream f = new FileOutputStream(filePath); ObjectOutputStream obj = new ObjectOutputStream(f)) {
             for (Customer customer : customers) {
