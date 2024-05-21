@@ -23,6 +23,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Bank_app extends javax.swing.JFrame {
 
+    private static final String CUSTOMER_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt";
+    private static final String PAYMENTS_FILE_PATH = "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt";
+
     private double a, Housingloan, Personalloan, vechileloan, result;
     private int months;
     Customer c;
@@ -706,7 +709,7 @@ public class Bank_app extends javax.swing.JFrame {
         taps.setSelectedIndex(1);
 
         try {
-            List<Payments> payment = DataFile.readPaymentsFromFile("C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt");
+            List<Payments> payment = DataFile.readPaymentsFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt");
             for (Payments i : payment) {
                 if (i.getCardnum().equals(c.getId())) {
                     String[] s = new String[4];
@@ -886,11 +889,30 @@ public class Bank_app extends javax.swing.JFrame {
     private void transferbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferbActionPerformed
         double transferammount = Double.parseDouble(amount.getText());
         double currentmony = Double.parseDouble(c.getMoney());
-        if (transferammount < currentmony) {
+        if (transferammount > currentmony) {
             JOptionPane.showMessageDialog(null, "not enough amount\n plesse try again when yous have enough monye you poor");
         } else {
             currentmony -= transferammount;
             c.setMoney(Double.toString(currentmony));
+            try {
+                List<Customer> l = DataFile.readCustomersFromFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt");
+                for (int i = 0; i < l.size(); i++) {
+                    Customer existingCustomer = l.get(i);
+                    if ((existingCustomer.getFirstName() + existingCustomer.getSecondName()).equals(c.getFirstName() + c.getSecondName())) {
+                        l.set(i, c);
+                        break;
+                    }
+                }
+                DataFile.writeCustomersToFile("C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Customers\\Customer.txt", l);
+
+            } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "File Not Found !", "ERROR 102", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Input or Output File Erorr !", "ERROR 103", JOptionPane.ERROR_MESSAGE);
+            } catch (ClassNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "Cannot Found Class File !", "ERROR 104", JOptionPane.ERROR_MESSAGE);
+            }
+
             ZonedDateTime now = ZonedDateTime.now();
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
 
@@ -901,7 +923,7 @@ public class Bank_app extends javax.swing.JFrame {
             int randomEightDigitNumber = r.nextInt((max - min) + 1) + min;
             Payments p = new Payments(formattedDateTime, Integer.toString(randomEightDigitNumber), "Transaction", c.getId(), Double.parseDouble(amount.getText()));
             try {
-                DataFile.AddPayments(p);
+                DataFile.addPayment(p, "C:\\Users\\capok\\Documents\\GitHub\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Payments.txt");
             } catch (IOException ex) {
                 Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
