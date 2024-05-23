@@ -38,8 +38,8 @@ public class Bank_app extends javax.swing.JFrame {
     public Bank_app(Customer t) {
         this.c = t;
         initComponents();
-        Name.setText(c.firstName+" "+c.secondName);
-        NetBalance.setText("Net balance: "+c.getMoney());
+        Name.setText(c.firstName + " " + c.secondName);
+        NetBalance.setText("Net balance: " + c.getMoney());
         String[] names = new String[4];
         for (int i = 0; i < 4; i++) {
             names[i] = dashtable.getColumnName(i);
@@ -49,7 +49,7 @@ public class Bank_app extends javax.swing.JFrame {
         try {
             File f = new File(PAYMENTS_FILE_PATH);
             Scanner s = new Scanner(f);
-            for (int i=0; i<3; i++) {
+            for (int i = 0; i < 3; i++) {
                 String idd = s.next() + " " + s.next() + " " + s.next() + " " + s.next();
 
                 if (idd.equals(c.getId())) {
@@ -109,7 +109,6 @@ public class Bank_app extends javax.swing.JFrame {
         trans = new javax.swing.JButton();
         transfer = new javax.swing.JButton();
         loan = new javax.swing.JButton();
-        messages = new javax.swing.JButton();
         services = new javax.swing.JButton();
         settings = new javax.swing.JButton();
         taps = new javax.swing.JTabbedPane();
@@ -144,8 +143,6 @@ public class Bank_app extends javax.swing.JFrame {
         amountcb = new javax.swing.JComboBox<>();
         total = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        wallets_Panel = new javax.swing.JPanel();
-        messages_Panel = new javax.swing.JPanel();
         services_Panel = new javax.swing.JPanel();
         combo = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -252,16 +249,6 @@ public class Bank_app extends javax.swing.JFrame {
             }
         });
 
-        messages.setBackground(new java.awt.Color(0, 102, 102));
-        messages.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        messages.setText("Messages");
-        messages.setPreferredSize(new java.awt.Dimension(90, 85));
-        messages.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                messagesActionPerformed(evt);
-            }
-        });
-
         services.setBackground(new java.awt.Color(0, 102, 102));
         services.setText("Local Services");
         services.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -291,28 +278,25 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dash, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loan, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(messages, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(services, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(trans, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(transfer, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(dash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(dash, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(trans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(trans, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(transfer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transfer, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(loan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(messages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(services, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loan, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(services, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -366,7 +350,7 @@ public class Bank_app extends javax.swing.JFrame {
                     .addComponent(NetBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -662,36 +646,6 @@ public class Bank_app extends javax.swing.JFrame {
 
         taps.addTab("tab4", loan_Panel);
 
-        wallets_Panel.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout wallets_PanelLayout = new javax.swing.GroupLayout(wallets_Panel);
-        wallets_Panel.setLayout(wallets_PanelLayout);
-        wallets_PanelLayout.setHorizontalGroup(
-            wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        wallets_PanelLayout.setVerticalGroup(
-            wallets_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        taps.addTab("tab5", wallets_Panel);
-
-        messages_Panel.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout messages_PanelLayout = new javax.swing.GroupLayout(messages_Panel);
-        messages_Panel.setLayout(messages_PanelLayout);
-        messages_PanelLayout.setHorizontalGroup(
-            messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        messages_PanelLayout.setVerticalGroup(
-            messages_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        taps.addTab("tab6", messages_Panel);
-
         services_Panel.setBackground(new java.awt.Color(153, 153, 153));
 
         combo.setBackground(new java.awt.Color(0, 102, 102));
@@ -731,9 +685,9 @@ public class Bank_app extends javax.swing.JFrame {
         services_PanelLayout.setHorizontalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(services_PanelLayout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addComponent(jLabel14)
-                .addGap(29, 29, 29)
+                .addGap(32, 32, 32)
                 .addGroup(services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(services_PanelLayout.createSequentialGroup()
@@ -750,17 +704,15 @@ public class Bank_app extends javax.swing.JFrame {
         services_PanelLayout.setVerticalGroup(
             services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(services_PanelLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(196, 196, 196)
                 .addGroup(services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(services_PanelLayout.createSequentialGroup()
-                        .addGap(322, 322, 322)
-                        .addComponent(jLabel14))
-                    .addGroup(services_PanelLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(196, 196, 196)
-                        .addGroup(services_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel14)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(services_PanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -910,12 +862,12 @@ public class Bank_app extends javax.swing.JFrame {
                 .addGroup(settings_PanelLayout.createSequentialGroup()
                     .addGap(177, 177, 177)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(333, Short.MAX_VALUE)))
+                    .addContainerGap(531, Short.MAX_VALUE)))
         );
 
         taps.addTab("tab8", settings_Panel);
 
-        getContentPane().add(taps, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 980, 760));
+        getContentPane().add(taps, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -40, 980, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -955,17 +907,13 @@ public class Bank_app extends javax.swing.JFrame {
         taps.setSelectedIndex(3);
     }//GEN-LAST:event_loanActionPerformed
 
-    private void messagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesActionPerformed
-        taps.setSelectedIndex(5);
-    }//GEN-LAST:event_messagesActionPerformed
-
     private void servicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesActionPerformed
-        taps.setSelectedIndex(6);
+        taps.setSelectedIndex(4);
     }//GEN-LAST:event_servicesActionPerformed
 
     private void dashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashActionPerformed
         taps.setSelectedIndex(0);
-        NetBalance.setText("Net balance: "+c.getMoney());
+        NetBalance.setText("Net balance: " + c.getMoney());
         String[] names = new String[4];
         for (int i = 0; i < 4; i++) {
             names[i] = dashtable.getColumnName(i);
@@ -975,7 +923,7 @@ public class Bank_app extends javax.swing.JFrame {
         try {
             File f = new File(PAYMENTS_FILE_PATH);
             Scanner s = new Scanner(f);
-            for (int i=0; i<3; i++) {
+            for (int i = 0; i < 3; i++) {
                 String idd = s.next() + " " + s.next() + " " + s.next() + " " + s.next();
 
                 if (idd.equals(c.getId())) {
@@ -1000,8 +948,53 @@ public class Bank_app extends javax.swing.JFrame {
     }//GEN-LAST:event_transferActionPerformed
 
     private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
-        taps.setSelectedIndex(7);
+        taps.setSelectedIndex(5);
     }//GEN-LAST:event_settingsActionPerformed
+
+    private void new_pass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_pass2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_new_pass2ActionPerformed
+
+    private void old_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_old_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_old_passActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        try {
+            List<User> l = DataFile.readUserFromFile(USER_FILE_PATH);
+
+            for (int i = 0; i < l.size(); i++) {
+                User existingUser = l.get(i);
+                if ((existingUser.getId().equals(c.getId()))) {
+                    if (old_pass.getText().equals(existingUser.getPass())) {
+                        if (new_pass.getText().equals(new_pass2.getText())) {
+                            existingUser.setPass(new_pass.getText());
+                            l.set(i, existingUser);
+                            break;
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Password dismatch stubid");
+                            break;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong Password stubid");
+                    }
+
+                    break;
+
+                }
+
+            }
+            DataFile.writeUsersToFile(USER_FILE_PATH, l);
+
+        } catch (IOException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         JOptionPane.showMessageDialog(null, "call 911\nto get help");
@@ -1034,14 +1027,12 @@ public class Bank_app extends javax.swing.JFrame {
         if (x.equals("Dark Mode")) {
             settings_Panel.setBackground(Color.DARK_GRAY);
             services_Panel.setBackground(Color.DARK_GRAY);
-            messages_Panel.setBackground(Color.DARK_GRAY);
             loan_Panel.setBackground(Color.DARK_GRAY);
             transfer_Panel.setBackground(Color.DARK_GRAY);
             trans_Panel.setBackground(Color.DARK_GRAY);
             dash_Panel.setBackground(Color.DARK_GRAY);
             settings.setBackground(Color.BLACK);
             services.setBackground(Color.BLACK);
-            messages.setBackground(Color.BLACK);
             transfer.setBackground(Color.BLACK);
             trans.setBackground(Color.BLACK);
             dash.setBackground(Color.BLACK);
@@ -1049,7 +1040,6 @@ public class Bank_app extends javax.swing.JFrame {
             jPanel1.setBackground(new Color(0, 0, 0));
             loan.setForeground(Color.WHITE);
             settings.setForeground(Color.WHITE);
-            messages.setForeground(Color.WHITE);
             services.setForeground(Color.WHITE);
             trans.setForeground(Color.WHITE);
             dash.setForeground(Color.WHITE);
@@ -1059,27 +1049,106 @@ public class Bank_app extends javax.swing.JFrame {
         if (x.equals("Light Mode")) {
             settings_Panel.setBackground(Color.LIGHT_GRAY);
             services_Panel.setBackground(Color.LIGHT_GRAY);
-            messages_Panel.setBackground(Color.LIGHT_GRAY);
             loan_Panel.setBackground(Color.LIGHT_GRAY);
             transfer_Panel.setBackground(Color.LIGHT_GRAY);
             trans_Panel.setBackground(Color.LIGHT_GRAY);
             dash_Panel.setBackground(Color.LIGHT_GRAY);
             settings.setBackground(Color.green);
             services.setBackground(Color.green);
-            messages.setBackground(Color.green);
             transfer.setBackground(Color.green);
             trans.setBackground(Color.green);
             dash.setBackground(Color.green);
             loan.setBackground(Color.green);
-            loan.setForeground(Color.BLACK);
-            settings.setForeground(Color.BLACK);
-            messages.setForeground(Color.BLACK);
-            services.setForeground(Color.BLACK);
-            trans.setForeground(Color.BLACK);
-            dash.setForeground(Color.BLACK);
-            transfer.setForeground(Color.BLACK);
+            loan.setForeground(Color.WHITE);
+            jPanel1.setBackground(Color.WHITE);
+            settings.setForeground(Color.WHITE);
+            services.setForeground(Color.WHITE);
+            trans.setForeground(Color.WHITE);
+            dash.setForeground(Color.WHITE);
+            transfer.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
+        String water, elec, gas, net;
+        water = "src\\main\\java\\BankApp\\Bills\\Water.txt";
+        elec = "src\\main\\java\\BankApp\\Bills\\Elec.txt";
+        gas = "src\\main\\java\\BankApp\\Bills\\Gas.txt";
+        net = "src\\main\\java\\BankApp\\Bills\\Net.txt";
+        String file = "";
+        if (combo.getSelectedIndex() == 0) {
+            file = water;
+        } else if (combo.getSelectedIndex() == 1) {
+            file = elec;
+        } else if (combo.getSelectedIndex() == 2) {
+            file = gas;
+        } else if (combo.getSelectedIndex() == 3) {
+            file = net;
+        }
+
+        File b = new File(file);
+        double current = Double.parseDouble(c.getMoney());
+        Scanner s;
+        boolean isexist = false;
+        try {
+            s = new Scanner(b);
+            while (s.hasNext()) {
+                if (billnum.getText().trim().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Enter The amount of bill");
+                    isexist = true;
+                    break;
+                } else if (billnum.getText().equals((String) s.next())) {
+                    isexist = true;
+                    Double amountt;
+                    amountt = Double.valueOf((String) s.next());
+                    if (amountt <= current) {
+                        current -= amountt;
+                        c.setMoney(Double.toString(current));
+                        //hoda y7tha fe el file bta3 customer
+                        try {
+                            List<Customer> l = DataFile.readCustomersFromFile(CUSTOMER_FILE_PATH);
+                            for (int i = 0; i < l.size(); i++) {
+                                Customer existingCustomer = l.get(i);
+                                if ((existingCustomer.getFirstName() + existingCustomer.getSecondName()).equals(c.getFirstName() + c.getSecondName())) {
+                                    l.set(i, c);
+                                    break;
+                                }
+                            }
+                            DataFile.writeCustomersToFile(CUSTOMER_FILE_PATH, l);
+                            DataFile.writeCustomerToFile("temp.txt", c);
+
+                        } catch (FileNotFoundException e) {
+                            JOptionPane.showMessageDialog(this, "File Not Found !", "ERROR 102", JOptionPane.ERROR_MESSAGE);
+                        } catch (IOException e) {
+                            JOptionPane.showMessageDialog(this, "Input or Output File Erorr !", "ERROR 103", JOptionPane.ERROR_MESSAGE);
+                        } catch (ClassNotFoundException e) {
+                            JOptionPane.showMessageDialog(this, "Cannot Found Class File !", "ERROR 104", JOptionPane.ERROR_MESSAGE);
+                        }
+                        JOptionPane.showMessageDialog(this, "Sucussufully Bill");
+                        billnum.setText("");
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Not Enough Money");
+                        break;
+                    }
+                }
+            }
+            if (!isexist) {
+                JOptionPane.showMessageDialog(this, "Wrong bill number");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_payActionPerformed
+
+    private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboActionPerformed
 
     private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
         // TODO add your handling code here:
@@ -1156,6 +1225,7 @@ public class Bank_app extends javax.swing.JFrame {
                 }
                 DataFile.writeCustomersToFile(CUSTOMER_FILE_PATH, l);
                 DataFile.writeCustomerToFile("temp.txt", c);
+                JOptionPane.showMessageDialog(null, "Transfer Done Sucussufully");
 
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(this, "File Not Found !", "ERROR 102", JOptionPane.ERROR_MESSAGE);
@@ -1175,15 +1245,14 @@ public class Bank_app extends javax.swing.JFrame {
             int randomEightDigitNumber = r.nextInt((max - min) + 1) + min;
             Payments p = new Payments(formattedDateTime, Integer.toString(randomEightDigitNumber), "Transaction", c.getId(), Double.parseDouble(amount.getText()));
             try {
-                FileWriter f = new FileWriter(PAYMENTS_FILE_PATH,true);
+                FileWriter f = new FileWriter(PAYMENTS_FILE_PATH, true);
                 PrintWriter pp = new PrintWriter(f);
-                pp.println(c.getId() + " " + formattedDateTime+" " + randomEightDigitNumber + " " + "Transfer" + " " + transferammount);
-               pp.close();
+                pp.println(c.getId() + " " + formattedDateTime + " " + randomEightDigitNumber + " " + "Transfer" + " " + transferammount);
+                pp.close();
             } catch (IOException ex) {
                 Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }//GEN-LAST:event_transferbActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -1201,102 +1270,6 @@ public class Bank_app extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        try {
-            List<User> l = DataFile.readUserFromFile(USER_FILE_PATH);
-
-            for (int i = 0; i < l.size(); i++) {
-                User existingUser = l.get(i);
-                if ((existingUser.getId().equals(c.getId()))) {
-                    if (old_pass.getText().equals(existingUser.getPass())) {
-                        if (new_pass.getText().equals(new_pass2.getText())) {
-                            existingUser.setPass(new_pass.getText());
-                            l.set(i, existingUser);
-                            break;
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Password dismatch stubid");
-                            break;
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Wrong Password stubid");
-                    }
-
-                    break;
-
-                }
-
-            }
-            DataFile.writeUsersToFile(USER_FILE_PATH, l);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void old_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_old_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_old_passActionPerformed
-
-    private void new_pass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_pass2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_new_pass2ActionPerformed
-
-    private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboActionPerformed
-
-    private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-        String water, elec, gas, net;
-        water = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Water.txt";
-        elec = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Elec.txt";
-        gas = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Gas.txt";
-        net = "C:\\Users\\ezzat\\Documents\\NetBeansProjects\\Bank-Project\\Bank Appliction\\mavenproject1\\src\\main\\java\\BankApp\\Bills\\Net.txt";
-        String file = "";
-        if (combo.getSelectedIndex() == 0) {
-            file = water;
-        }
-        if (combo.getSelectedIndex() == 1) {
-            file = elec;
-        }
-        if (combo.getSelectedIndex() == 2) {
-            file = gas;
-        }
-        if (combo.getSelectedIndex() == 3) {
-            file = net;
-        }
-
-        File b = new File(file);
-        double current = Double.parseDouble(c.getMoney());
-        Scanner s = null;
-        try {
-            s = new Scanner(b);
-            String n;
-            while (s.hasNext()) {
-                if (billnum.getText() == s.next()) {
-                    String amount;
-                    amount = s.next();
-                    current -= Double.parseDouble(amount);
-                    c.setMoney(Double.toString(current));
-                    //hoda y7tha fe el file bta3 customer
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Bank_app.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }//GEN-LAST:event_payActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1373,8 +1346,6 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton loan;
     private javax.swing.JPanel loan_Panel;
-    private javax.swing.JButton messages;
-    private javax.swing.JPanel messages_Panel;
     private javax.swing.JTextField new_pass;
     private javax.swing.JTextField new_pass2;
     private javax.swing.JTextField old_pass;
@@ -1393,6 +1364,5 @@ public class Bank_app extends javax.swing.JFrame {
     private javax.swing.JButton transferb;
     private javax.swing.JTable transtable;
     private javax.swing.JComboBox<String> tybecb;
-    private javax.swing.JPanel wallets_Panel;
     // End of variables declaration//GEN-END:variables
 }
