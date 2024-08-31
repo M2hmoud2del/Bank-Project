@@ -1,7 +1,3 @@
-Got it! Based on the file path and structure, here's a revised README file for your Java-based bank application project:
-
----
-
 # Bank Application
 
 ## Overview
