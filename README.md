@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Java-based banking application provides both user and admin functionalities. Users can manage their accounts and transactions, while admins can oversee and manage customer accounts and activities.
+This Java-based banking application features a graphical user interface (GUI) to facilitate user and admin interactions. It enables users to manage their accounts and transactions, while admins can oversee and manage customer accounts and activities.
 
 ## Features
 
@@ -36,6 +36,8 @@ The main application code is located in the following directory:
 Bank-Project/BankApplication/mavenproject1/src/main/java/BankApp/Bank_app.java
 ```
 
+The GUI components are implemented in this codebase to provide an intuitive user experience.
+
 ## Installation
 
 1. **Clone the repository:**
@@ -61,17 +63,18 @@ Bank-Project/BankApplication/mavenproject1/src/main/java/BankApp/Bank_app.java
 ## Usage
 
 - **For Users**:
+  - Open the application to launch the GUI.
   - Log in with your credentials.
   - Use the dashboard to view and manage your account and transactions.
-  - Navigate to the transaction window for transaction details and fund transfers.
-  - Apply for loans and pay local services bills under the respective sections.
-  - Update your settings as needed.
+  - Navigate through the GUI to manage transactions, transfer money, apply for loans, and pay local services bills.
+  - Access and update settings through the GUI interface.
 
 - **For Admins**:
+  - Open the application to launch the GUI.
   - Log in with admin credentials.
-  - Access customer management features to view, add, or remove customers.
+  - Use the GUI to access customer management features to view, add, or remove customers.
   - Use the dashboard to get insights into customer activities and transactions.
-  - Manage transactions through the transaction window.
+  - Manage transactions through the GUI interface.
 
 ## Contributing
 
@@ -85,9 +88,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any inquiries or issues, please contact:
 
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
-- **GitHub**: [your-github-profile](https://github.com/your-github-profile)
-
----
-
-Feel free to adjust the paths and details as needed!
+- **Email**: [capoking3@gmail.com](mailto:capoking3@gmail.com)
+- **GitHub**: [https://github.com/M2hmoud2del](https://github.com/M2hmoud2del)
