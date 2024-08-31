@@ -1,80 +1,101 @@
-# Bank Application
+# Educational Center System
 
 ## Overview
 
-This Java-based banking application features a graphical user interface (GUI) to facilitate user and admin interactions. It enables users to manage their accounts and transactions, while admins can oversee and manage customer accounts and activities.
+The Educational Center System is a C++ application designed for managing various aspects of an educational center. It operates through a terminal interface, providing functionalities for managing students, courses, instructors, class schedules, and generating reports.
 
 ## Features
 
-### For Users:
-- **Login**: Secure authentication for accessing user accounts.
-- **Dashboard**: Displays the user's name and transaction history.
-- **Transaction Window**: View and manage all transactions.
-- **Transfer Money**: Transfer funds between accounts.
-- **Loan Management**: Apply for and manage loans.
-- **Local Services Bills**: Pay local services bills.
-- **Settings**: 
-  - Change password
-  - Toggle dark/light mode
-  - Access help resources
+- **Student Management**:
+  - Add new students
+  - View student details
+  - Update student information
+  - Remove students
 
-### For Admins:
-- **Login**: Secure authentication for accessing admin accounts.
-- **Customer Management**:
-  - **View Customer Details**: Access detailed information about customers.
-  - **Add Customers**: Add new customer accounts.
-  - **Remove Customers**: Remove existing customer accounts.
-- **Logout**: Securely log out from the admin account.
-- **Dashboard**: Provides a summary of customer transactions and activities.
-- **Transaction Window**: View all transactions across the system.
+- **Course Management**:
+  - Add new courses
+  - View course details
+  - Update course information
+  - Remove courses
+
+- **Instructor Management**:
+  - Add new instructors
+  - View instructor details
+  - Update instructor information
+  - Remove instructors
+
+- **Class Scheduling**:
+  - Schedule classes
+  - View class schedules
+  - Update class timings
+  - Cancel classes
+
+- **Reports**:
+  - Generate student reports
+  - Generate course reports
+  - Generate instructor reports
 
 ## Project Structure
 
-The main application code is located in the following directory:
+The project is organized as follows:
 
 ```
-Bank-Project/BankApplication/mavenproject1/src/main/java/BankApp/Bank_app.java
+Educational-Center/
+├── src.cpp                  # Main source code file
+├── students.txt             # File containing student data
+├── tempstudents.txt         # Temporary file for student data
+├── password.txt             # File containing password information
+├── project.c++.pdf          # Project documentation
+├── run.exe                  # Executable file for running the application
+└── README.md                # This README file
 ```
-
-The GUI components are implemented in this codebase to provide an intuitive user experience.
 
 ## Installation
 
 1. **Clone the repository:**
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/M2hmoud2del/Educational-Center
    ```
 
 2. **Navigate to the project directory:**
    ```sh
-   cd Bank-Project/BankApplication/mavenproject1
+   cd Educational-Center
    ```
 
-3. **Build the project using Maven:**
+3. **Build the project:**
+   Since the project is already compiled into `run.exe`, you can skip this step. If you need to compile the source code, use a C++ compiler:
    ```sh
-   mvn clean install
+   g++ src.cpp -o run.exe
    ```
 
 4. **Run the application:**
    ```sh
-   mvn exec:java -Dexec.mainClass="BankApp.Bank_app"
+   ./run.exe
    ```
 
 ## Usage
 
-- **For Users**:
-  - Open the application to launch the GUI.
-  - Log in with your credentials.
-  - Use the dashboard to view and manage your account and transactions.
-  - Navigate through the GUI to manage transactions, transfer money, apply for loans, and pay local services bills.
-  - Access and update settings through the GUI interface.
+- **Student Management**:
+  - Use the terminal commands to add, view, update, or remove student information.
 
-- **For Admins**:
-  - Open the application to launch the GUI.
-  - Log in with admin credentials.
-  - Use the GUI to access customer management features to view, add, or remove customers.
-  - Use the dashboard to get insights into customer activities and transactions.
-  - Manage transactions through the GUI interface.
+- **Course Management**:
+  - Manage courses through terminal commands, including adding, viewing, updating, and removing courses.
+
+- **Instructor Management**:
+  - Handle instructor details using terminal commands.
+
+- **Class Scheduling**:
+  - Schedule and manage class timings via terminal commands.
+
+- **Reports**:
+  - Generate and view various reports for students, courses, and instructors through terminal commands.
+
+## Files
+
+- **`students.txt`**: Contains student data.
+- **`tempstudents.txt`**: Temporary file for student data operations.
+- **`password.txt`**: Stores password information for the application.
+- **`project.c++.pdf`**: Contains documentation for the project.
 
 ## Contributing
 
@@ -86,3 +107,4 @@ For any inquiries or issues, please contact:
 
 - **Email**: [capoking3@gmail.com](mailto:capoking3@gmail.com)
 - **GitHub**: [https://github.com/M2hmoud2del](https://github.com/M2hmoud2del)
+- **LinkedIn**: [https://www.linkedin.com/in/mahmoud-adel-975026127/](https://www.linkedin.com/in/mahmoud-adel-975026127/)
